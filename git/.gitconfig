@@ -1,0 +1,30 @@
+[user]
+	name = nozomi-iida
+	email = iida19990106@gmail.com
+
+[alias]
+	branch-name = !git branch --show-current
+	st = status
+	ch = checkout
+	chb = checkout -b
+	chd = checkout dev
+	br = !git -P branch
+	brd = branch -D
+	cm = commit -m
+	ad = add .
+	adp = add -p
+	ps = !git push origin $(git branch-name)
+	pl = !git pull origin $(git branch-name)
+	me = merge
+	med = merge dev
+	ss = stash
+[core]
+	excludesfile = $HOME/.gitignore
+[credential]
+  # https://qiita.com/SEIHI/items/3b73df1363859e9aac13
+	helper = store
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
