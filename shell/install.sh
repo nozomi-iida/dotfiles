@@ -1,12 +1,9 @@
 #!/bin/bash -e
 
+source ./install_config.sh
+
 echo "Create .zshrc link."
 ln -snfv "$(pwd)/.zshrc" "$HOME/.zshrc"
-
-echo "Create .config links."
-for configFile in .config/*; do
-  ln -snfv "$(pwd)/$configFile" "$HOME/$configFile"
-done
 
 echo "Create command links."
 mkdir -p "$HOME/command"
