@@ -14,9 +14,9 @@ vim.cmd('au FileType * set fo-=r fo-=o') -- No auto commenting new lines
 
 function TrimWhitespace()
   local save = vim.fn.winsaveview()
-  vim.api.nvim_exec([[
+  vim.api.nvim_exec2([[
         keeppatterns %s/\s\+$//e
-    ]], false)
+    ]], { output = false })
   vim.fn.winrestview(save)
 end
 
