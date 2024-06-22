@@ -40,8 +40,6 @@ ghq_peco_repo() {
 zle -N ghq_peco_repo
 bindkey '^]' ghq_peco_repo
 
-export DOCKER_HOST=unix:///run/user/1000/docker.sock
-
 # alias
 alias vim='nvim'
 alias v='nvim'
