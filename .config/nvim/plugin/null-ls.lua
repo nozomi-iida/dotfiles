@@ -19,11 +19,28 @@ local sources = {
   null_ls.builtins.diagnostics.fish,
   null_ls.builtins.formatting.eslint_d,
   null_ls.builtins.code_actions.eslint_d,
+  null_ls.builtins.diagnostics.stylelint,
+  null_ls.builtins.formatting.stylelint,
   null_ls.builtins.formatting.prettierd.with({
     condition = function(utils)
       return utils.has_file({ ".prettierrc.json", ".prettierrc" })
     end,
   }),
+  null_ls.builtins.diagnostics.cspell.with({
+    extra_args = function()
+      return { "--config", vim.fn.expand("~/.config/nvim/cspell.json") }
+    end,
+    diagnostics_postprocess = function(diagnostic)
+      diagnostic.severity = vim.diagnostic.severity["WARN"]
+    end,
+  }),
+  null_ls.builtins.code_actions.cspell.with({
+    config = {
+      find_json = function()
+        return vim.fn.expand("~/.config/nvim/cspell.json")
+      end
+    },
+  })
 }
 
 null_ls.setup {
