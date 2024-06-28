@@ -15,6 +15,7 @@ lspconfig.setup {
     "rust_analyzer",
     "tailwindcss",
     "tsserver",
+    "stylelint_lsp",
   },
   automatic_installation = true
 }

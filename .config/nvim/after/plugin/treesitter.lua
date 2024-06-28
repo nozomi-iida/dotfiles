@@ -4,9 +4,6 @@ if (not status) then return end
 ts.setup {
   highlight = {
     enable = true,
-    disable = {
-      "vimdoc"
-    },
   },
   indent = {
     enable = true,
@@ -15,7 +12,6 @@ ts.setup {
   ensure_installed = {
     "tsx",
     "toml",
-    "fish",
     "json",
     "yaml",
     "css",
@@ -23,6 +19,7 @@ ts.setup {
     "lua",
     "graphql",
     "typescript",
+    "vimdoc",
   },
   modules = {},
   ignore_install = {},

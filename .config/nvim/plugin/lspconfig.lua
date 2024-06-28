@@ -24,12 +24,10 @@ nvim_lsp.lua_ls.setup {
   settings = {
     Lua = {
       diagnostics = {
-        -- Get the language server to recognize the `vim` global
         globals = { 'vim' },
       },
 
       workspace = {
-        -- Make the server aware of Neovim runtime files
         library = vim.api.nvim_get_runtime_file("", true),
         checkThirdParty = false
       },
@@ -69,4 +67,12 @@ nvim_lsp.jsonls.setup {
 nvim_lsp.prismals.setup {
   capabilities = capabilities,
   filetypes = { "prisma" }
+}
+
+nvim_lsp.stylelint_lsp.setup {
+  -- not working
+  stylelintplus = {
+    autoFixOnSave = true,
+    autoFixOnFormat = true,
+  },
 }
