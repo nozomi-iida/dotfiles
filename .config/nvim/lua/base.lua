@@ -9,7 +9,6 @@ vim.opt.ignorecase = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-
 vim.cmd('au FileType * set fo-=r fo-=o') -- No auto commenting new lines
 
 function TrimWhitespace()
@@ -22,5 +21,10 @@ end
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
-  callback = TrimWhitespace
+  callback = function()
+    local filetype = vim.bo.filetype
+    if filetype ~= "markdown" then
+      TrimWhitespace()
+    end
+  end
 })

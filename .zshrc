@@ -44,6 +44,7 @@ bindkey '^]' ghq_peco_repo
 alias vim='nvim'
 alias v='nvim'
 alias fig="docker compose"
+# alias git='echo "Temporarily disabled git command"'
 
 
 autoload -U +X bashcompinit && bashcompinit
