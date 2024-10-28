@@ -1,1 +1,31 @@
 extends javascript
+
+snippet staticPath "getStaticPaths"
+	export const getStaticPaths = (async () => {
+		${0}
+		return {
+			paths: [],
+			fallback: true,
+		}
+	}) satisfies GetStaticPaths
+
+snippet staticProps "getStaticProps"
+	import type { InferGetStaticPropsType } from 'next';
+
+	type Props = InferGetStaticPropsType<typeof getStaticProps>;
+
+	export const getStaticProps = (async () => {
+		${0}
+		return {
+			props: {},
+		}
+	})
+
+snippet nextPage "nextPage"
+	const ${0}Page = () => {
+		return (
+			<h1>Page</h1>
+		)
+	}
+
+	export default Page

@@ -16,7 +16,10 @@ local eslint_files = { ".eslintrc.js", ".eslintrc.json", ".eslintrc" }
 
 local sources = {
   null_ls.builtins.diagnostics.eslint_d.with({
-    diagnostics_format = '[eslint] #{m}\n(#{c})'
+    diagnostics_format = '[eslint] #{m}\n(#{c})',
+    condition = function(utils)
+      return utils.has_file(eslint_files)
+    end,
   }),
   null_ls.builtins.diagnostics.fish,
   null_ls.builtins.formatting.eslint_d.with({
@@ -24,11 +27,7 @@ local sources = {
       return utils.has_file(eslint_files)
     end,
   }),
-  null_ls.builtins.code_actions.eslint_d.with({
-    condition = function(utils)
-      return utils.has_file(eslint_files)
-    end,
-  }),
+  null_ls.builtins.code_actions.eslint_d,
   null_ls.builtins.diagnostics.stylelint.with({
     diagnostics_format = '[stylelint] #{m}\n(#{c})',
   }),
