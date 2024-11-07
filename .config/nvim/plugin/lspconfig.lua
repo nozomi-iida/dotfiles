@@ -36,7 +36,7 @@ nvim_lsp.lua_ls.setup {
 }
 
 -- TypeScript
-nvim_lsp.tsserver.setup {
+nvim_lsp.ts_ls.setup {
   capabilities = capabilities,
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
 }

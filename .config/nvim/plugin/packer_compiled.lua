@@ -134,6 +134,11 @@ _G.packer_plugins = {
     path = "/home/nozomi/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["markdown-preview.nvim"] = {
+    loaded = true,
+    path = "/home/nozomi/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
+    url = "https://github.com/iamcco/markdown-preview.nvim"
+  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/home/nozomi/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -179,10 +184,10 @@ _G.packer_plugins = {
     path = "/home/nozomi/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
-  ["nvim-tree"] = {
+  ["nvim-tree.lua"] = {
     loaded = true,
-    path = "/home/nozomi/.local/share/nvim/site/pack/packer/start/nvim-tree",
-    url = "https://github.com/nvim-tree/nvim-tree"
+    path = "/home/nozomi/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    url = "https://github.com/nvim-tree/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,

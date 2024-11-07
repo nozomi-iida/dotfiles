@@ -23,7 +23,12 @@ packer.startup(function(use)
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
   use 'nvimdev/lspsaga.nvim'
-  use 'L3MON4D3/LuaSnip'
+  use {
+    'L3MON4D3/LuaSnip',
+    requires = {
+      'saadparwaiz1/cmp_luasnip',
+    }
+  }
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function()

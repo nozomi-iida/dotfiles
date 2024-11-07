@@ -14,7 +14,7 @@ lspconfig.setup {
     "prismals",
     "rust_analyzer",
     "tailwindcss",
-    "tsserver",
+    "ts_ls",
     "stylelint_lsp",
   },
   automatic_installation = true
