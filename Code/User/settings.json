@@ -55,5 +55,8 @@
         "workbench.action.toggleSidebarVisibility"
       ]
     }
-  ]
+  ],
+  "git.enableSmartCommit": true,
+  "githubPullRequests.createOnPublishBranch": "never",
+  "githubPullRequests.terminalLinksHandler": "github"
 }
