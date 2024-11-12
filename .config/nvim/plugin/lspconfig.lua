@@ -1,7 +1,7 @@
 local status, nvim_lsp = pcall(require, "lspconfig")
 if (not status) then return end
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local cmpCapabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
 local enable_format_on_save = function(_, bufnr)
@@ -15,9 +15,20 @@ local enable_format_on_save = function(_, bufnr)
   })
 end
 
+nvim_lsp.util.default_config = vim.tbl_extend(
+  'force',
+  nvim_lsp.util.default_config,
+  {
+    capabilities = vim.tbl_deep_extend(
+      "force",
+      vim.lsp.protocol.make_client_capabilities(),
+      cmpCapabilities
+    )
+  }
+)
+
 -- Lua
 nvim_lsp.lua_ls.setup {
-  capabilities = capabilities,
   on_attach = function(client, bufnr)
     enable_format_on_save(client, bufnr)
   end,
@@ -37,7 +48,6 @@ nvim_lsp.lua_ls.setup {
 
 -- TypeScript
 nvim_lsp.ts_ls.setup {
-  capabilities = capabilities,
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
 }
 
@@ -49,7 +59,6 @@ nvim_lsp.rust_analyzer.setup {
 }
 
 nvim_lsp.cssls.setup {
-  capabilities = capabilities,
   filetypes = { "css", "scss", "less" },
 }
 
@@ -60,12 +69,10 @@ nvim_lsp.graphql.setup {
 }
 
 nvim_lsp.jsonls.setup {
-  capabilities = capabilities,
   filetypes = { "json" }
 }
 
 nvim_lsp.prismals.setup {
-  capabilities = capabilities,
   filetypes = { "prisma" }
 }
 

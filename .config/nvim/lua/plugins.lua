@@ -78,8 +78,18 @@ packer.startup(function(use)
       'nvim-tree/nvim-web-devicons',
     },
   }
-  use({
+  use {
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end,
-  })
+  }
+  use {
+    "antosha417/nvim-lsp-file-operations",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-tree.lua",
+    },
+    config = function()
+      require("lsp-file-operations").setup()
+    end,
+  }
 end)

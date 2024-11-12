@@ -184,6 +184,12 @@ _G.packer_plugins = {
     path = "/home/nozomi/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
+  ["nvim-lsp-file-operations"] = {
+    config = { "\27LJ\2\nA\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\24lsp-file-operations\frequire\0" },
+    loaded = true,
+    path = "/home/nozomi/.local/share/nvim/site/pack/packer/start/nvim-lsp-file-operations",
+    url = "https://github.com/antosha417/nvim-lsp-file-operations"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/nozomi/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
@@ -288,6 +294,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: nvim-lsp-file-operations
+time([[Config for nvim-lsp-file-operations]], true)
+try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\24lsp-file-operations\frequire\0", "config", "nvim-lsp-file-operations")
+time([[Config for nvim-lsp-file-operations]], false)
 -- Config for: nx.nvim
 time([[Config for nx.nvim]], true)
 try_loadstring("\27LJ\2\n4\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\anx\frequire\0", "config", "nx.nvim")
