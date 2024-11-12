@@ -58,5 +58,7 @@
   ],
   "git.enableSmartCommit": true,
   "githubPullRequests.createOnPublishBranch": "never",
-  "githubPullRequests.terminalLinksHandler": "github"
+  "githubPullRequests.terminalLinksHandler": "github",
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "git.confirmSync": false
 }
