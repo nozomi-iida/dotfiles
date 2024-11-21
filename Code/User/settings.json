@@ -34,6 +34,19 @@
   "terminal.integrated.defaultProfile.osx": "zsh",
   "github.copilot.editor.enableAutoCompletions": true,
   "vim.leader": ",",
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "p"
+      ],
+      "after": [
+        "\"",
+        "_",
+        "d",
+        "P"
+      ]
+    }
+  ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": [
@@ -60,5 +73,6 @@
   "githubPullRequests.createOnPublishBranch": "never",
   "githubPullRequests.terminalLinksHandler": "github",
   "terminal.integrated.enableMultiLinePasteWarning": false,
-  "git.confirmSync": false
+  "git.confirmSync": false,
+  "githubPullRequests.pullBranch": "never"
 }
