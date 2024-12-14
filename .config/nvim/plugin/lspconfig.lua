@@ -46,14 +46,12 @@ nvim_lsp.lua_ls.setup {
   },
 }
 
--- TypeScript
 nvim_lsp.ts_ls.setup {
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
 }
 
 nvim_lsp.tailwindcss.setup {}
 
--- Rust
 nvim_lsp.rust_analyzer.setup {
   filetypes = { "rust" }
 }
@@ -62,7 +60,6 @@ nvim_lsp.cssls.setup {
   filetypes = { "css", "scss", "less" },
 }
 
--- Graphql
 nvim_lsp.graphql.setup {
   root_dir = nvim_lsp.util.root_pattern(".graphqlconfig", ".graphqlrc", "package.json"),
   filetypes = { "graphql" }

@@ -1,0 +1,12 @@
+snippet dirs "directions"
+  let dirs = vec![(1, 0), (0, 1), (-1, 0), (0, -1)];
+  for (dh, dw) in dirs {
+      let nh = dh + ch as i64;
+      let nw = dw + cw as i64;
+      if nh < 0 || nh >= H as i64 || nw < 0 || nw >= W as i64 {
+          continue;
+      }
+      let nh = nh as usize;
+      let nw = nw as usize;
+  }
+

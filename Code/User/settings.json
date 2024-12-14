@@ -74,5 +74,10 @@
   "githubPullRequests.terminalLinksHandler": "github",
   "terminal.integrated.enableMultiLinePasteWarning": false,
   "git.confirmSync": false,
-  "githubPullRequests.pullBranch": "never"
+  "githubPullRequests.pullBranch": "never",
+  "gitlens.ai.generateCommitMessage.customInstructions": "Semantic Commit MessageおよびCommit Message Guidelineに従い、日本語のコミットメッセージを1行で作成してください。",
+  "database-client.autoSync": true,
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-3.5-turbo",
+  "javascript.updateImportsOnFileMove.enabled": "always",
 }
