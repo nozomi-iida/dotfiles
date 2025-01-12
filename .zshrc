@@ -50,7 +50,7 @@ alias fig="docker compose"
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 
-source $HOME/.asdf/asdf.sh
+# source $HOME/.asdf/asdf.sh
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 

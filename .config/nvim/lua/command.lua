@@ -6,9 +6,6 @@ end
 
 vim.cmd('command! FileName lua FileName()')
 
-vim.cmd('command! FileName lua FileName()')
-
-
 function FileNameRelative()
   local filename = vim.fn.expand('%.')
   vim.fn.setreg('*', filename)
