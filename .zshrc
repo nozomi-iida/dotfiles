@@ -24,10 +24,6 @@ export PATH=$PATH:/usr/local/go/bin
 export DENO_INSTALL="/home/nozomi/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
-# Add npm global packages to PATH
-NPM_PREFIX=$(npm config get prefix)
-export PATH=$PATH:$NPM_PREFIX/bin
-
 # ghq + peco
 ghq_peco_repo() {
   selected_repository=$(ghq list -p | peco --query "$LBUFFER")
@@ -46,7 +42,6 @@ alias v='nvim'
 alias fig="docker compose"
 # alias git='echo "Temporarily disabled git command"'
 
-
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 
@@ -59,6 +54,10 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Add npm global packages to PATH
+NPM_PREFIX=$(npm config get prefix)
+export PATH=$PATH:$NPM_PREFIX/bin
 
 # pnpm
 export PNPM_HOME="/home/nozomi/.local/share/pnpm"

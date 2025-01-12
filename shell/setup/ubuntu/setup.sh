@@ -20,9 +20,23 @@ rm ./google-chrome-stable_current_amd64.deb
 
 sudo snap install notion-snap-reborn
 
-# terminal
-# zeek
+# Alacritty
+# コマンドコピーしただけ
+https://zenn.dev/shinnopo/articles/798398b1d87f62
+# pecoがエラーになったので以下で解決
+https://qiita.com/qq8244353/items/02ca44aedf585f7fa296
+# Peek
 # slack
+sudo snap install slack
 # zoom
 # vscode
+# cursor
 # tmux
+sudo apt install tmux -y
+
+# alfred
+echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_24.04/ /' | sudo tee /etc/apt/sources.list.d/home:manuelschneid3r.list
+curl -fsSL https://download.opensuse.org/repositories/home:manuelschneid3r/xUbuntu_24.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_manuelschneid3r.gpg > /dev/null
+sudo apt update
+sudo apt install albert# docker
+# エラーがでたら`sudo apt --fix-broken install`で修正した
