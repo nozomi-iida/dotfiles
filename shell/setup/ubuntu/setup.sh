@@ -96,3 +96,16 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 wget -O docker-desktop-amd64.deb "https://desktop.docker.com/linux/main/amd64/178610/docker-desktop-amd64.deb?_gl=1*swaa6k*_ga*ODEzMjgzNDAzLjE3MzY3MzY4MDQ.*_ga_XJWPQMJYHQ*MTczNjczNjgwMy4xLjEuMTczNjczNzczNS42MC4wLjA."
 sudo apt install ./docker-desktop-amd64.deb -y
 rm ./docker-desktop-amd64.deb
+
+# https://docs.docker.com/desktop/setup/sign-in/#credentials-management-for-linux-users
+gpg --generate-key
+pass init <your_generated_gpg-id_public_key>
+
+# awscli
+install_if_not_exists "aws" "
+  curl 'https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip' -o 'awscliv2.zip'
+  sudo apt install unzip -y
+  unzip awscliv2.zip
+  sudo ./aws/install
+  rm -rf aws awscliv2.zip
+"
