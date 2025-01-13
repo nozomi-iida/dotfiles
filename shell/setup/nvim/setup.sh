@@ -14,4 +14,4 @@ fc-cache -fv
 rm Hack.zip
 
 # install ripgrepg to use telescope.live_grep
-sudo apt-get install ripgrep
+sudo apt install ripgrep -y
