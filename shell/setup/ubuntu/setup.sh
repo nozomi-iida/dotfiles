@@ -2,7 +2,7 @@
 install_if_not_exists() {
   local command_name=$1
   local install_command=$2
-  
+
   if ! command -v "$command_name" &> /dev/null; then
       echo "Installing $command_name..."
       eval "$install_command"
@@ -47,7 +47,8 @@ https://zenn.dev/shinnopo/articles/798398b1d87f62
 # pecoがエラーになったので以下で解決
 https://qiita.com/qq8244353/items/02ca44aedf585f7fa296
 
-# Peek
+# TODO: peekが動かないから、別のアプリを作る必要がありそう(https://github.com/phw/peek/issues/1191)
+# peek
 install_if_not_exists "peek" "
   sudo add-apt-repository ppa:peek-developers/stable
   sudo apt update
@@ -58,6 +59,12 @@ install_if_not_exists "peek" "
 install_if_not_exists "slack" "sudo snap install slack"
 
 # zoom
+install_if_not_exists "zoom" "
+  wget https://zoom.us/client/latest/zoom_amd64.deb
+  sudo apt install ./zoom_amd64.deb -y
+  rm ./zoom_amd64.deb
+"
+
 # vscode
 install_if_not_exists "vscode" "
   wget -O vscode.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
@@ -109,3 +116,13 @@ install_if_not_exists "aws" "
   sudo ./aws/install
   rm -rf aws awscliv2.zip
 "
+
+# DbGate
+# https://dbgate.org/download/
+sudo snap install dbgate
+
+# Postmain
+sudo snap install postman
+
+# Discord
+sudo snap install discord
