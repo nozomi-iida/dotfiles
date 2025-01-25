@@ -1,2 +1,2 @@
 #!/bin/sh
-nohup ~/Applications/cursor.AppImage "$@" --no-sandbox >/dev/null 2>&1 &
+nohup /mnt/c/Users/iida1/AppData/Local/Programs/cursor/Cursor.exe "$@" --no-sandbox >/dev/null 2>&1 &
