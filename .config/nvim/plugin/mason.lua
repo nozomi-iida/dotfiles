@@ -16,6 +16,9 @@ lspconfig.setup {
     "tailwindcss",
     "ts_ls",
     "stylelint_lsp",
+    -- mason-null-lsを使ってしかインストールできないためコメントアウト
+    -- "eslint_d",
+    -- 'preetierd'
   },
   automatic_installation = true
 }

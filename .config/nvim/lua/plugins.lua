@@ -55,7 +55,12 @@ packer.startup(function(use)
   use 'preservim/vim-markdown'
   use 'godlygeek/tabular'
   use 'norcalli/nvim-colorizer.lua'
-  use 'yoshida-m-3/vim-im-select'
+  use {
+    'yoshida-m-3/vim-im-select',
+    cond = function()
+      return vim.fn.has("mac") == 1
+    end
+  }
   use 'machakann/vim-sandwich'
   -- use 'vim-denops/denops.vim'
   use 'lambdalisue/gin.vim'

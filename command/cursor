@@ -1,2 +1,14 @@
-#!/bin/sh
-nohup /mnt/c/Users/iida1/AppData/Local/Programs/cursor/Cursor.exe "$@" --no-sandbox >/dev/null 2>&1 &
+#!/bin/bash -e
+
+OS=$(uname)
+if [ "$OS" = "Darwin" ]; then
+  # TODO
+  :  # 何もしない場合の一時的なプレースホルダー
+elif [ "$OS" = "Linux" ]; then
+  if grep -q microsoft /proc/version; then
+    WINDOWS_HOME=$(wslpath "$(wslvar USERPROFILE)")
+    "$WINDOWS_HOME/AppData/Local/Programs/cursor/resources/app/bin/cursor" "$@" --no-sandbox >/dev/null 2>&1 &
+  else
+    nohup ~/Applications/cursor.AppImage "$@" --no-sandbox >/dev/null 2>&1 &
+  fi
+fi
