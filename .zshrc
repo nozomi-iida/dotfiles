@@ -69,3 +69,4 @@ esac
 
 # Created by `pipx` on 2025-01-16 03:48:15
 export PATH="$PATH:/home/nozomi/.local/bin"
+. "/home/nozomi/.deno/env"
