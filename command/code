@@ -1,0 +1,12 @@
+#!/bin/bash -e
+
+OS=$(uname)
+if [ "$OS" = "Darwin" ]; then
+  # TODO
+  :  # 何もしない場合の一時的なプレースホルダー
+elif [ "$OS" = "Linux" ]; then
+  if grep -q microsoft /proc/version; then
+    WINDOWS_HOME=$(wslpath "$(wslvar USERPROFILE)")
+    "$WINDOWS_HOME/AppData/Local/Programs/Microsoft VS Code/bin/code" "$@" --no-sandbox >/dev/null 2>&1 &
+  fi
+fi

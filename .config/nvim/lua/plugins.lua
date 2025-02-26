@@ -85,6 +85,12 @@ packer.startup(function(use)
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end,
   }
+  -- use {
+  --   "0x00-ketsu/markdown-preview.nvim",
+  --   config = function()
+  --     require('markdown-preview').setup {}
+  --   end
+  -- }
   use {
     "antosha417/nvim-lsp-file-operations",
     requires = {
