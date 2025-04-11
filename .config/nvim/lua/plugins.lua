@@ -58,7 +58,7 @@ packer.startup(function(use)
     }
   }
   use 'github/copilot.vim'
-  use 'preservim/vim-markdown'
+  use 'ixru/nvim-markdown'
   use 'godlygeek/tabular'
   use 'norcalli/nvim-colorizer.lua'
   use {
