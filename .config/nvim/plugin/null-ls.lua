@@ -13,21 +13,21 @@ local lsp_formatting = function(bufnr)
 end
 
 local eslint_files = { ".eslintrc.js", ".eslintrc.json", ".eslintrc" }
-
+local cspell = require("cspell")
 local sources = {
-  null_ls.builtins.diagnostics.eslint_d.with({
+  require("none-ls.diagnostics.eslint_d").with({
     diagnostics_format = '[eslint] #{m}\n(#{c})',
     condition = function(utils)
       return utils.has_file(eslint_files)
     end,
   }),
   null_ls.builtins.diagnostics.fish,
-  null_ls.builtins.formatting.eslint_d.with({
+  require("none-ls.formatting.eslint_d").with({
     condition = function(utils)
       return utils.has_file(eslint_files)
     end,
   }),
-  null_ls.builtins.code_actions.eslint_d,
+  require("none-ls.code_actions.eslint_d"),
   null_ls.builtins.diagnostics.stylelint.with({
     diagnostics_format = '[stylelint] #{m}\n(#{c})',
   }),
@@ -37,7 +37,7 @@ local sources = {
       return utils.has_file({ ".prettierrc.json", ".prettierrc" })
     end,
   }),
-  null_ls.builtins.diagnostics.cspell.with({
+  cspell.diagnostics.with({
     extra_args = function()
       return { "--config", vim.fn.expand("~/.config/nvim/cspell.json") }
     end,
@@ -45,7 +45,7 @@ local sources = {
       diagnostic.severity = vim.diagnostic.severity["WARN"]
     end,
   }),
-  null_ls.builtins.code_actions.cspell.with({
+  cspell.code_actions.with({
     config = {
       find_json = function()
         return vim.fn.expand("~/.config/nvim/cspell.json")
