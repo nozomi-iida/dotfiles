@@ -69,7 +69,6 @@ null_ls.setup {
     end
   end,
   ensure_installed = {
-    'eslint_d',
     'prettierd',
   }
 }

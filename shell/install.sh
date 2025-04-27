@@ -2,7 +2,6 @@
 
 SCRIPT_DIR=$(dirname "$0")
 source "$SCRIPT_DIR/install_config.sh"
-
 echo "Create .zshrc link."
 ln -snfv "$(pwd)/.zshrc" "$HOME/.zshrc"
 
