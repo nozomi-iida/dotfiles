@@ -14,6 +14,11 @@ end
 
 local eslint_files = { ".eslintrc.js", ".eslintrc.json", ".eslintrc" }
 local cspell = require("cspell")
+local cspell_config = {
+  find_json = function()
+    return vim.fn.expand("~/.config/nvim/cspell.json")
+  end
+}
 local sources = {
   require("none-ls.diagnostics.eslint_d").with({
     diagnostics_format = '[eslint] #{m}\n(#{c})',
@@ -38,19 +43,13 @@ local sources = {
     end,
   }),
   cspell.diagnostics.with({
-    extra_args = function()
-      return { "--config", vim.fn.expand("~/.config/nvim/cspell.json") }
-    end,
+    config = cspell_config,
     diagnostics_postprocess = function(diagnostic)
       diagnostic.severity = vim.diagnostic.severity["WARN"]
     end,
   }),
   cspell.code_actions.with({
-    config = {
-      find_json = function()
-        return vim.fn.expand("~/.config/nvim/cspell.json")
-      end
-    },
+    config = cspell_config,
   })
 }
 
