@@ -28,3 +28,8 @@ claude mcp add --transport http github https://api.githubcopilot.com/mcp -H ${GI
 ```
 
 
+## VsCode, Cursorのセットアップ
+
+```bash
+./shell/install_code.sh
+```
