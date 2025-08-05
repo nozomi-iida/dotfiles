@@ -67,7 +67,17 @@
       "commands": [
         "workbench.action.toggleSidebarVisibility"
       ]
-    }
+    },
+    {
+      "before": [
+        "<leader>",
+        "c",
+        "p"
+      ],
+      "commands": [
+        "copyRelativeFilePath"
+      ]
+    },
   ],
   "git.enableSmartCommit": true,
   "githubPullRequests.createOnPublishBranch": "never",

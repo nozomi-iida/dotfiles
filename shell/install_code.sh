@@ -14,6 +14,7 @@ for codeFile in Code/User/*; do
       # WSL環境の場合
       WINDOWS_HOME=$(wslpath "$(wslvar USERPROFILE)")
       touch "$WINDOWS_HOME/AppData/Roaming/$codeFile"
+      # シンボリックリンクだとうまく動かないため、ファイルをコピー
       cp -f "$(pwd)/$codeFile" "$WINDOWS_HOME/AppData/Roaming/$codeFile"
     else
       ln -snfv "$(pwd)/$codeFile" "$HOME/.config/$codeFile"
