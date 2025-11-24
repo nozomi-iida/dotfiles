@@ -67,7 +67,17 @@
       "commands": [
         "workbench.action.toggleSidebarVisibility"
       ]
-    }
+    },
+    {
+      "before": [
+        "<leader>",
+        "c",
+        "p"
+      ],
+      "commands": [
+        "copyRelativeFilePath"
+      ]
+    },
   ],
   "git.enableSmartCommit": true,
   "githubPullRequests.createOnPublishBranch": "never",
@@ -81,4 +91,7 @@
   "gitlens.ai.vscode.model": "copilot:gpt-3.5-turbo",
   "javascript.updateImportsOnFileMove.enabled": "always",
   "chat.editing.alwaysSaveWithGeneratedChanges": true,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
 }
