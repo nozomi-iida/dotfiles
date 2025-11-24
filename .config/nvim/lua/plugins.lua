@@ -70,6 +70,13 @@ packer.startup(function(use)
   use 'machakann/vim-sandwich'
   -- use 'vim-denops/denops.vim'
   use 'lambdalisue/gin.vim'
+  -- use {
+  --   'kdheepak/lazygit.nvim',
+  --   requires = {
+  --     'nvim-lua/plenary.nvim',
+  --   }
+  -- }
+  use 'kdheepak/lazygit.nvim'
   use {
     'Equilibris/nx.nvim',
     requires = {
