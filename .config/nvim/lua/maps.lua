@@ -37,3 +37,6 @@ keymap.set('n', '<C-w><left>', '<C-w><')
 keymap.set('n', '<C-w><right>', '<C-w>>')
 keymap.set('n', '<C-w><up>', '<C-w>+')
 keymap.set('n', '<C-w><down>', '<C-w>-')
+
+-- copy relative file path to clipboard
+keymap.set('n', ',cr', ':FileNameRelative<CR>', { noremap = true, silent = true })
