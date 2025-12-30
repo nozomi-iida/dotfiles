@@ -8,13 +8,13 @@ if status then
   })
 end
 
--- LspAttach autocmdでlua_lsのフォーマット設定
+-- LspAttach autocmdでフォーマット設定
 local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client.name == 'lua_ls' then
-      -- lua_lsの場合のみ、保存時に自動フォーマット
+    if client.name == 'lua_ls' or client.name == 'rust_analyzer' then
+      -- lua_lsとrust_analyzerの場合、保存時に自動フォーマット
       vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = args.buf })
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = augroup_format,
