@@ -13,6 +13,10 @@ local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if not client then
+      return
+    end
+
     if client.name == 'lua_ls' or client.name == 'rust_analyzer' then
       -- lua_lsとrust_analyzerの場合、保存時に自動フォーマット
       vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = args.buf })
@@ -23,8 +27,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
           vim.lsp.buf.format({ bufnr = args.buf })
         end,
       })
-      if client.supports_method("textDocument/inlayHint") then
-        vim.lsp.inlay_hint.enable()
+      if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
       end
     end
   end,
