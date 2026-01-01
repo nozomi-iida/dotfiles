@@ -24,6 +24,9 @@ require("lazy").setup({
   defaults = {
     lazy = true,
   },
+  rocks = {
+    enabled = false,  -- Disable luarocks support (not needed)
+  },
   performance = {
     rtp = {
       disabled_plugins = {
