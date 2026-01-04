@@ -11,24 +11,12 @@ return {
     ft = 'markdown',
   },
 
-  -- Text Alignment
-  {
-    'godlygeek/tabular',
-    ft = 'markdown',
-  },
-
   -- Markdown Preview
   {
     'iamcco/markdown-preview.nvim',
     ft = 'markdown',
     build = function() vim.fn['mkdp#util#install']() end,
     cmd = { 'MarkdownPreview', 'MarkdownPreviewStop', 'MarkdownPreviewToggle' },
-  },
-
-  -- Prisma Syntax
-  {
-    'pantharshit00/vim-prisma',
-    ft = 'prisma',
   },
 
   -- Time Tracking
@@ -48,13 +36,20 @@ return {
 
   -- Nx Monorepo Support
   {
-    'Equilibris/nx.nvim',
-    cmd = 'Nx',
+    "Equilibris/nx.nvim",
+
     dependencies = {
-      'nvim-telescope/telescope.nvim',
+      "nvim-telescope/telescope.nvim",
     },
-    config = function()
-      require('nx').setup {}
-    end,
+
+    opts         = {
+      -- See below for config options
+      nx_cmd_root = "npx nx",
+    },
+
+    -- Plugin will load when you use these keys
+    keys         = {
+      { "<leader>nx", "<cmd>Telescope nx actions<CR>", desc = "nx actions" }
+    },
   },
 }
