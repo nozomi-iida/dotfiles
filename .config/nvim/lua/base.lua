@@ -9,13 +9,17 @@ vim.opt.ignorecase = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-vim.cmd('au FileType * set fo-=r fo-=o') -- No auto commenting new lines
+-- No auto commenting new lines
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "*",
+  callback = function()
+    vim.opt_local.formatoptions:remove({ 'r', 'o' })
+  end
+})
 
 function TrimWhitespace()
   local save = vim.fn.winsaveview()
-  vim.api.nvim_exec2([[
-        keeppatterns %s/\s\+$//e
-    ]], { output = false })
+  pcall(vim.cmd, [[keeppatterns %s/\s\+$//e]])
   vim.fn.winrestview(save)
 end
 
