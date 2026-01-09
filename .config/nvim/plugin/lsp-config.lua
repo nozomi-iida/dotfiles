@@ -47,4 +47,5 @@ vim.lsp.enable({
   'stylelint_lsp',
   'denols',
   'clangd',
+  'gopls',
 })

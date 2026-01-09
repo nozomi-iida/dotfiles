@@ -12,7 +12,23 @@ local lsp_formatting = function(bufnr)
   })
 end
 
-local eslint_files = { ".eslintrc.js", ".eslintrc.json", ".eslintrc" }
+local eslint_files = { ".eslintrc.js", ".eslintrc.json", ".eslintrc", "eslint.config.js", "eslint.config.mjs" }
+local prettier_files = { ".prettierrc.json", ".prettierrc", "prettier.config.js" }
+
+local function find_root(files)
+  return function()
+    local bufname = vim.api.nvim_buf_get_name(0)
+    local found = vim.fs.find(files, {
+      upward = true,
+      path = vim.fs.dirname(bufname),
+    })
+    if #found > 0 then
+      return vim.fs.dirname(found[1])
+    end
+    return nil
+  end
+end
+
 local cspell = require("cspell")
 local cspell_config = {
   find_json = function()
@@ -22,25 +38,20 @@ local cspell_config = {
 local sources = {
   require("none-ls.diagnostics.eslint_d").with({
     diagnostics_format = '[eslint] #{m}\n(#{c})',
-    condition = function(utils)
-      return utils.has_file(eslint_files)
-    end,
+    root_dir = find_root(eslint_files),
   }),
-  null_ls.builtins.diagnostics.fish,
   require("none-ls.formatting.eslint_d").with({
-    condition = function(utils)
-      return utils.has_file(eslint_files)
-    end,
+    root_dir = find_root(eslint_files),
   }),
-  require("none-ls.code_actions.eslint_d"),
+  require("none-ls.code_actions.eslint_d").with({
+    root_dir = find_root(eslint_files),
+  }),
   null_ls.builtins.diagnostics.stylelint.with({
     diagnostics_format = '[stylelint] #{m}\n(#{c})',
   }),
   null_ls.builtins.formatting.stylelint,
   null_ls.builtins.formatting.prettierd.with({
-    condition = function(utils)
-      return utils.has_file({ ".prettierrc.json", ".prettierrc" })
-    end,
+    root_dir = find_root(prettier_files),
   }),
   cspell.diagnostics.with({
     config = cspell_config,

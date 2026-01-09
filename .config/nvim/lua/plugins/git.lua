@@ -3,6 +3,9 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
+    opts = {
+      current_line_blame = true,
+    },
   },
 
   -- Git Blame & Browse
@@ -24,5 +27,23 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
+    init = function()
+      vim.g.lazygit_floating_window_winblend = 0
+      vim.g.lazygit_floating_window_scaling_factor = 0.9
+      vim.g.lazygit_floating_window_use_plenary = 0
+      vim.g.lazygit_use_neovim_remote = 1
+    end,
+  },
+
+  -- Diffview
+  {
+    'sindrets/diffview.nvim',
+    cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
+    keys = {
+      { '<leader>gd', '<cmd>DiffviewOpen<cr>', desc = 'Open Diffview' },
+      { '<leader>gh', '<cmd>DiffviewFileHistory %<cr>', desc = 'File History' },
+      { '<leader>gH', '<cmd>DiffviewFileHistory<cr>', desc = 'Branch History' },
+    },
+    opts = {},
   },
 }

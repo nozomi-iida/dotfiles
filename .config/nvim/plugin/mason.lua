@@ -16,6 +16,7 @@ lspconfig.setup {
     "tailwindcss",
     "ts_ls",
     "stylelint_lsp",
+    "gopls",
     -- "cspell",
     -- mason-null-lsを使ってしかインストールできないためコメントアウト
     -- "eslint_d",
