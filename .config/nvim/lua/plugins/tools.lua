@@ -3,12 +3,21 @@ return {
   {
     'github/copilot.vim',
     event = 'InsertEnter',
+    init = function()
+      vim.g.copilot_filetypes = {
+        ["*"] = true,
+        ["rust"] = false,
+      }
+    end,
   },
 
   -- Markdown Support
   {
     'ixru/nvim-markdown',
     ft = 'markdown',
+    init = function()
+      vim.g.vim_markdown_folding_disabled = 1
+    end,
   },
 
   -- Markdown Preview
@@ -19,10 +28,13 @@ return {
     cmd = { 'MarkdownPreview', 'MarkdownPreviewStop', 'MarkdownPreviewToggle' },
   },
 
-  -- Time Tracking
+  -- Debugger
   {
-    'wakatime/vim-wakatime',
-    event = 'VeryLazy',
+    'puremourning/vimspector',
+    cmd = { 'VimspectorInstall', 'VimspectorUpdate' },
+    init = function()
+      vim.g.vimspector_install_gadgets = { 'CodeLLDB' }
+    end,
   },
 
   -- Input Method Switching (macOS)
@@ -37,18 +49,13 @@ return {
   -- Nx Monorepo Support
   {
     "Equilibris/nx.nvim",
-
     dependencies = {
       "nvim-telescope/telescope.nvim",
     },
-
-    opts         = {
-      -- See below for config options
+    opts = {
       nx_cmd_root = "npx nx",
     },
-
-    -- Plugin will load when you use these keys
-    keys         = {
+    keys = {
       { "<leader>nx", "<cmd>Telescope nx actions<CR>", desc = "nx actions" }
     },
   },
