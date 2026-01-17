@@ -12,7 +12,7 @@ local lsp_formatting = function(bufnr)
   })
 end
 
-local eslint_files = { ".eslintrc.js", ".eslintrc.json", ".eslintrc", "eslint.config.js", "eslint.config.mjs" }
+-- local eslint_files = { ".eslintrc.js", ".eslintrc.json", ".eslintrc", "eslint.config.js", "eslint.config.mjs" }
 local prettier_files = { ".prettierrc.json", ".prettierrc", "prettier.config.js" }
 
 local function find_root(files)
@@ -36,16 +36,17 @@ local cspell_config = {
   end
 }
 local sources = {
-  require("none-ls.diagnostics.eslint_d").with({
-    diagnostics_format = '[eslint] #{m}\n(#{c})',
-    root_dir = find_root(eslint_files),
-  }),
-  require("none-ls.formatting.eslint_d").with({
-    root_dir = find_root(eslint_files),
-  }),
-  require("none-ls.code_actions.eslint_d").with({
-    root_dir = find_root(eslint_files),
-  }),
+  -- vscode-eslint-language-server を使用しているため無効化
+  -- require("none-ls.diagnostics.eslint_d").with({
+  --   diagnostics_format = '[eslint] #{m}\n(#{c})',
+  --   root_dir = find_root(eslint_files),
+  -- }),
+  -- require("none-ls.formatting.eslint_d").with({
+  --   root_dir = find_root(eslint_files),
+  -- }),
+  -- require("none-ls.code_actions.eslint_d").with({
+  --   root_dir = find_root(eslint_files),
+  -- }),
   null_ls.builtins.diagnostics.stylelint.with({
     diagnostics_format = '[stylelint] #{m}\n(#{c})',
   }),
