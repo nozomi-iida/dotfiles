@@ -1,5 +1,5 @@
 function FileName()
-  local filename = vim.fn.expand('%:t')
+  local filename = vim.fn.expand('%:t:r')
   vim.fn.setreg('*', filename)
   vim.fn.setreg('+', filename)
 end
@@ -7,9 +7,16 @@ end
 vim.cmd('command! FileName lua FileName()')
 
 function FileNameRelative()
-  local filename = vim.fn.expand('%.')
-  vim.fn.setreg('*', filename)
-  vim.fn.setreg('+', filename)
+  local filepath = vim.fn.expand('%:p')
+  local git_root = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
+  local relative
+  if git_root and vim.v.shell_error == 0 then
+    relative = filepath:sub(#git_root + 2)
+  else
+    relative = vim.fn.expand('%:.')
+  end
+  vim.fn.setreg('*', relative)
+  vim.fn.setreg('+', relative)
 end
 
 vim.cmd('command! FileNameRelative lua FileNameRelative()')
