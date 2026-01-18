@@ -40,10 +40,36 @@ return {
     'sindrets/diffview.nvim',
     cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
     keys = {
-      { '<leader>gd', '<cmd>DiffviewOpen<cr>', desc = 'Open Diffview' },
+      { '<leader>gd', '<cmd>DiffviewOpen<cr>',          desc = 'Open Diffview' },
       { '<leader>gh', '<cmd>DiffviewFileHistory %<cr>', desc = 'File History' },
-      { '<leader>gH', '<cmd>DiffviewFileHistory<cr>', desc = 'Branch History' },
+      { '<leader>gH', '<cmd>DiffviewFileHistory<cr>',   desc = 'Branch History' },
     },
-    opts = {},
+    opts = {
+      hooks = {
+        diff_buf_win_enter = function()
+          vim.opt_local.foldlevel = 99
+        end,
+      },
+      keymaps = {
+        view = {
+          { 'n', '<tab>',   false },
+          { 'n', '<s-tab>', false },
+          { 'n', '<C-tab>', false },
+          { 'n', 's',       false },
+        },
+        file_panel = {
+          { 'n', '<tab>',   false },
+          { 'n', '<s-tab>', false },
+          { 'n', '<C-tab>', false },
+          { 'n', 's',       false },
+        },
+        file_history_panel = {
+          { 'n', '<tab>',   false },
+          { 'n', '<s-tab>', false },
+          { 'n', '<C-tab>', false },
+          { 'n', 's',       false },
+        },
+      },
+    },
   },
 }

@@ -8,6 +8,7 @@ mason.setup({})
 lspconfig.setup {
   ensure_installed = {
     "cssls",
+    "eslint",
     "graphql",
     "jsonls",
     "lua_ls",

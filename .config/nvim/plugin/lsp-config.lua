@@ -10,10 +10,26 @@ end
 
 -- LspAttach autocmdでフォーマット設定
 local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
+local augroup_eslint = vim.api.nvim_create_augroup("EslintFixAll", { clear = true })
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     if not client then
+      return
+    end
+
+    -- ESLint LSPの場合、保存時に EslintFixAll を実行
+    if client.name == "eslint" then
+      vim.api.nvim_clear_autocmds({ group = augroup_eslint, buffer = args.buf })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = augroup_eslint,
+        buffer = args.buf,
+        callback = function()
+          if vim.fn.exists(":EslintFixAll") > 0 then
+            vim.cmd("EslintFixAll")
+          end
+        end,
+      })
       return
     end
 
@@ -49,4 +65,5 @@ vim.lsp.enable({
   'denols',
   'clangd',
   'gopls',
+  'eslint',
 })
