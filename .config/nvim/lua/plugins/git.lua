@@ -45,6 +45,11 @@ return {
       { '<leader>gH', '<cmd>DiffviewFileHistory<cr>',   desc = 'Branch History' },
     },
     opts = {
+      hooks = {
+        diff_buf_win_enter = function()
+          vim.opt_local.foldlevel = 99
+        end,
+      },
       keymaps = {
         view = {
           { 'n', '<tab>',   false },
