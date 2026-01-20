@@ -11,9 +11,4 @@ for commandFile in command/*; do
   ln -snfv "$(pwd)/$commandFile" "$HOME/$commandFile"
 done
 
-echo "Create git links."
-for gitFile in git/.??*; do
-  ln -snfv "$(pwd)/$gitFile" "$HOME/$(echo $gitFile | sed -e 's/\git\///g')"
-done
-
 echo "Success"

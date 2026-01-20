@@ -1,7 +1,3 @@
-[user]
-	name = nozomi-iida
-	email = iida19990106@gmail.com
-
 [alias]
 	branch-name = !git branch --show-current
 	st = status

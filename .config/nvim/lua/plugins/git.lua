@@ -46,6 +46,9 @@ return {
     },
     opts = {
       hooks = {
+        view_opened = function()
+          vim.cmd('tabmove')
+        end,
         diff_buf_win_enter = function()
           vim.opt_local.foldlevel = 99
         end,
