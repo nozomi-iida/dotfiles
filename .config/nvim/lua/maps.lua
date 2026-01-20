@@ -14,6 +14,10 @@ keymap.set('n', '-', '<C-x>')
 -- Delete a word backwards
 keymap.set('n', 'dw', 'vb"_d')
 
+-- Delete a word backwards (insert mode)
+-- Ctrl+BackSpace
+keymap.set('i', '<C-H>', '<C-w>')
+
 -- Select all
 keymap.set('n', '<C-a>', 'gg<S-v>G')
 
