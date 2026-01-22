@@ -5,6 +5,14 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {
       current_line_blame = true,
+      on_attach = function(bufnr)
+        local gs = require('gitsigns')
+        local opts = function(desc) return { buffer = bufnr, desc = desc } end
+
+        vim.keymap.set('n', '<leader>hs', function() gs.stage_hunk() vim.cmd('silent write') end, opts('Stage/Unstage hunk'))
+        vim.keymap.set('n', '<leader>hr', function() gs.reset_hunk() vim.cmd('silent write') end, opts('Reset hunk'))
+        vim.keymap.set('n', '<leader>hp', gs.preview_hunk, opts('Preview hunk'))
+      end,
     },
   },
 
