@@ -9,8 +9,12 @@ return {
         local gs = require('gitsigns')
         local opts = function(desc) return { buffer = bufnr, desc = desc } end
 
-        vim.keymap.set('n', '<leader>hs', function() gs.stage_hunk() vim.cmd('silent write') end, opts('Stage/Unstage hunk'))
-        vim.keymap.set('n', '<leader>hr', function() gs.reset_hunk() vim.cmd('silent write') end, opts('Reset hunk'))
+        vim.keymap.set('n', '<leader>hs', function()
+          gs.stage_hunk()
+          vim.cmd('silent write')
+          gs.next_hunk()
+        end, opts('Stage hunk'))
+        vim.keymap.set('n', '<leader>hr', function() gs.reset_hunk() end, opts('Reset hunk'))
         vim.keymap.set('n', '<leader>hp', gs.preview_hunk, opts('Preview hunk'))
       end,
     },
@@ -53,6 +57,7 @@ return {
       { '<leader>gH', '<cmd>DiffviewFileHistory<cr>',   desc = 'Branch History' },
     },
     opts = {
+      watch_index = false,
       hooks = {
         view_opened = function()
           vim.cmd('tabmove')
@@ -67,12 +72,14 @@ return {
           { 'n', '<s-tab>', false },
           { 'n', '<C-tab>', false },
           { 'n', 's',       false },
+          { 'n', 'R',       '<cmd>DiffviewRefresh<cr>', { desc = 'Refresh' } },
         },
         file_panel = {
           { 'n', '<tab>',   false },
           { 'n', '<s-tab>', false },
           { 'n', '<C-tab>', false },
           { 'n', 's',       false },
+          { 'n', 'R',       '<cmd>DiffviewRefresh<cr>', { desc = 'Refresh' } },
         },
         file_history_panel = {
           { 'n', '<tab>',   false },
