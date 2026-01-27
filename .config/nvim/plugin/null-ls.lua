@@ -60,7 +60,7 @@ local sources = {
   cspell.diagnostics.with({
     config = cspell_config,
     diagnostics_postprocess = function(diagnostic)
-      diagnostic.severity = vim.diagnostic.severity["WARN"]
+      diagnostic.severity = vim.diagnostic.severity["HINT"]
     end,
   }),
   cspell.code_actions.with({
