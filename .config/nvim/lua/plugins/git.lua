@@ -12,7 +12,7 @@ return {
         vim.keymap.set('n', '<leader>hs', function()
           gs.stage_hunk()
           vim.cmd('silent write')
-          gs.next_hunk()
+          gs.nav_hunk('next')
         end, opts('Stage hunk'))
         vim.keymap.set('n', '<leader>hr', function() gs.reset_hunk() end, opts('Reset hunk'))
         vim.keymap.set('n', '<leader>hp', gs.preview_hunk, opts('Preview hunk'))

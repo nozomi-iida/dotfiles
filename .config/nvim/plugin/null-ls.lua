@@ -53,8 +53,8 @@ local sources = {
   null_ls.builtins.formatting.stylelint,
   null_ls.builtins.formatting.prettierd.with({
     root_dir = find_root(prettier_files),
-    condition = function(utils)
-      return utils.root_has_file(prettier_files)
+    runtime_condition = function()
+      return find_root(prettier_files)() ~= nil
     end,
   }),
   cspell.diagnostics.with({
