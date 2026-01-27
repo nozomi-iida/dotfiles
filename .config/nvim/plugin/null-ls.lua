@@ -13,7 +13,7 @@ local lsp_formatting = function(bufnr)
 end
 
 -- local eslint_files = { ".eslintrc.js", ".eslintrc.json", ".eslintrc", "eslint.config.js", "eslint.config.mjs" }
-local prettier_files = { ".prettierrc.json", ".prettierrc", "prettier.config.js" }
+local prettier_files = { ".prettierrc.json", ".prettierrc", ".prettierrc.js", "prettier.config.js" }
 
 local function find_root(files)
   return function()
