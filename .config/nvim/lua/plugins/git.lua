@@ -64,6 +64,16 @@ return {
         view_opened = function()
           vim.cmd('tabmove')
         end,
+        diff_buf_read = function(bufnr)
+          local disabled_lsp = { 'gopls' }
+          vim.schedule(function()
+            for _, name in ipairs(disabled_lsp) do
+              for _, client in pairs(vim.lsp.get_clients({ bufnr = bufnr, name = name })) do
+                vim.lsp.buf_detach_client(bufnr, client.id)
+              end
+            end
+          end)
+        end,
         diff_buf_win_enter = function()
           vim.opt_local.foldlevel = 99
         end,
