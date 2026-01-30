@@ -10,4 +10,5 @@ else
 fi
 
 ln -snfv "$(pwd)/claude/$SOURCE" "$HOME/.claude/settings.json"
+ln -snfv "$(pwd)/claude/skills" "$HOME/.claude/skills"
 
