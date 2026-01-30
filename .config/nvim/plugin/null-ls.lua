@@ -53,7 +53,7 @@ local sources = {
   null_ls.builtins.formatting.stylelint,
   null_ls.builtins.formatting.prettierd.with({
     root_dir = find_root(prettier_files),
-    runtime_condition = function()
+    condition = function()
       return find_root(prettier_files)() ~= nil
     end,
   }),

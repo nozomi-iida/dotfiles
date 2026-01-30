@@ -12,9 +12,9 @@ end
 local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
 local augroup_eslint = vim.api.nvim_create_augroup("EslintFixAll", { clear = true })
 
--- フォーマットを無効にするLSP一覧
-local format_disabled_lsp = {
-  "ts_ls",
+-- フォーマットを有効にするLSP一覧（ホワイトリスト）
+local format_enabled_lsp = {
+  "gopls",
 }
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
@@ -38,19 +38,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
       return
     end
 
-    -- フォーマット機能をサポートするLSPで保存時に自動フォーマット
-    if client.supports_method("textDocument/formatting") then
+    -- ホワイトリストに含まれるLSPのみ保存時に自動フォーマット
+    if vim.tbl_contains(format_enabled_lsp, client.name) and client.supports_method("textDocument/formatting") then
       vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = args.buf })
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = augroup_format,
         buffer = args.buf,
         callback = function()
-          vim.lsp.buf.format({
-            bufnr = args.buf,
-            filter = function(c)
-              return not vim.tbl_contains(format_disabled_lsp, c.name)
-            end,
-          })
+          vim.lsp.buf.format({ bufnr = args.buf })
         end,
       })
     end
