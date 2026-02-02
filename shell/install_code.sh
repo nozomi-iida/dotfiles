@@ -12,6 +12,7 @@ for codeFile in Code/User/*; do
   elif [ "$OS" = "Linux" ]; then
     if grep -q microsoft /proc/version; then
       # WSL環境の場合
+      sudo apt install wslu
       WINDOWS_HOME=$(wslpath "$(wslvar USERPROFILE)")
       touch "$WINDOWS_HOME/AppData/Roaming/$codeFile"
       # シンボリックリンクだとうまく動かないため、ファイルをコピー

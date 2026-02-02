@@ -13,7 +13,8 @@ source $ZSH/oh-my-zsh.sh
 
 # Global Path config
 export PATH=$HOME/command:$PATH
-export PATH=/home/nozomi/bin:$PATH
+export PATH=$HOME/bin:$PATH
+export PATH=$PATH:/snap/bin:$PATH
 
 # Golang
 export GOPATH=$HOME/go
