@@ -21,7 +21,7 @@ rm peco_linux_amd64.tar.gz
 
 go install github.com/x-motemen/ghq@latest
 
-echo "Create .zshrc link."
-ln -snfv "$(pwd)/.zshrc" "$HOME/.zshrc"
+echo "Copy .zshrc."
+cp -v "$(pwd)/.zshrc" "$HOME/.zshrc"
 
 source ~/.zshrc
