@@ -15,6 +15,7 @@ local augroup_eslint = vim.api.nvim_create_augroup("EslintFixAll", { clear = tru
 -- フォーマットを有効にするLSP一覧（ホワイトリスト）
 local format_enabled_lsp = {
   "gopls",
+  "rust_analyzer",
 }
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
