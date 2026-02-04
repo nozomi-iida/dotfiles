@@ -24,4 +24,4 @@ rm Hack.zip
 
 # install ripgrepg to use telescope.live_grep
 sudo apt install ripgrep -y
-snap install lazygit
+go install github.com/jesseduffield/lazygit@latest
