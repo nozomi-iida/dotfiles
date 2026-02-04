@@ -6,10 +6,11 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-file-browser.nvim',
+      'nvim-telescope/telescope-live-grep-args.nvim',
     },
     keys = {
       { ';f',   function() require('telescope.builtin').find_files({ no_ignore = false, hidden = true }) end,                      desc = 'Find files' },
-      { ';r',   function() require('telescope.builtin').live_grep({ additional_args = function() return { "--hidden" } end }) end, desc = 'Live grep' },
+      { ';r',   function() require('telescope').extensions.live_grep_args.live_grep_args({ additional_args = { "--hidden", "-F" } }) end, desc = 'Live grep' },
       { '\\\\', function() require('telescope.builtin').buffers() end,                                                             desc = 'Buffers' },
       { ';t',   function() require('telescope.builtin').help_tags() end,                                                           desc = 'Help tags' },
       { ';;',   function() require('telescope.builtin').resume() end,                                                              desc = 'Resume' },
@@ -66,6 +67,7 @@ return {
       }
 
       telescope.load_extension("file_browser")
+      telescope.load_extension("live_grep_args")
     end,
   },
 }
