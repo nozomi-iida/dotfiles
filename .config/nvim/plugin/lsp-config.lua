@@ -33,8 +33,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
         group = augroup_eslint,
         buffer = args.buf,
         callback = function()
-          if vim.fn.exists(":EslintFixAll") > 0 then
-            vim.cmd("EslintFixAll")
+          if vim.fn.exists(":LspEslintFixAll") > 0 then
+            vim.cmd("LspEslintFixAll")
           end
         end,
       })
