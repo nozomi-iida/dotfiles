@@ -26,6 +26,18 @@ return {
     ft = 'markdown',
     build = function() vim.fn['mkdp#util#install']() end,
     cmd = { 'MarkdownPreview', 'MarkdownPreviewStop', 'MarkdownPreviewToggle' },
+    init = function()
+      -- WSL2対応: カスタム関数でwslviewを使用
+      if vim.fn.has('wsl') == 1 then
+        vim.g.mkdp_browserfunc = 'OpenMarkdownPreview'
+        vim.cmd([[
+          function! OpenMarkdownPreview(url) abort
+            silent! execute '!wslview ' . shellescape(a:url)
+            redraw!
+          endfunction
+        ]])
+      end
+    end,
   },
 
   -- Debugger
