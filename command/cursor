@@ -2,7 +2,6 @@
 
 OS=$(uname)
 if [ "$OS" = "Darwin" ]; then
-  # TODO
   :  # 何もしない場合の一時的なプレースホルダー
 elif [ "$OS" = "Linux" ]; then
   if grep -q microsoft /proc/version; then

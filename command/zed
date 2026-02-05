@@ -6,6 +6,6 @@ if [ "$OS" = "Darwin" ]; then
 elif [ "$OS" = "Linux" ]; then
   if grep -q microsoft /proc/version; then
     WINDOWS_HOME=$(wslpath "$(wslvar USERPROFILE)")
-    "$WINDOWS_HOME/AppData/Local/Programs/Microsoft VS Code/bin/code" "$@" --no-sandbox >/dev/null 2>&1 &
+    "$WINDOWS_HOME/AppData/Local/Programs/Zed/Zed.exe" "$@" >/dev/null 2>&1 &
   fi
 fi
