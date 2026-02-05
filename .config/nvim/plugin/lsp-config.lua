@@ -16,6 +16,8 @@ local augroup_eslint = vim.api.nvim_create_augroup("EslintFixAll", { clear = tru
 local format_enabled_lsp = {
   "gopls",
   "rust_analyzer",
+  "lua_ls",
+  "eslint",
 }
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
