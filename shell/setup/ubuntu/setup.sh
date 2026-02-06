@@ -22,7 +22,9 @@ gsettings set org.gnome.mutter overlay-key 'Alt_L'
 install_if_not_exists "git" "sudo apt install git"
 
 # setup nvim
-install_if_not_exists "nvim" "sudo snap install nvim"
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt update
+sudo apt install neovim
 install_if_not_exists "xclip" "sudo apt install xclip"
 
 # Packer
