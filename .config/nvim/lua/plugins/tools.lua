@@ -17,6 +17,7 @@ return {
     ft = 'markdown',
     init = function()
       vim.g.vim_markdown_folding_disabled = 1
+      vim.cmd('map <Plug> <Plug>Markdown_Fold')
     end,
   },
 
@@ -79,9 +80,9 @@ return {
       "nvim-lua/plenary.nvim",
     },
     keys = {
-      { "<leader>S", function() require("spectre").toggle() end, desc = "Toggle Spectre" },
+      { "<leader>S",  function() require("spectre").toggle() end,                            desc = "Toggle Spectre" },
       { "<leader>sw", function() require("spectre").open_visual({ select_word = true }) end, desc = "Search current word" },
-      { "<leader>sw", function() require("spectre").open_visual() end, mode = "v", desc = "Search current word" },
+      { "<leader>sw", function() require("spectre").open_visual() end,                       mode = "v",                  desc = "Search current word" },
     },
   },
 }

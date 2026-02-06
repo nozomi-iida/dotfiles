@@ -19,9 +19,26 @@ return {
       { "<leader>to", function() require("neotest").output.open({ enter = true }) end, desc = "Show test output" },
     },
     config = function()
+      local vitest_adapter = require("neotest-vitest")({})
+
+      vitest_adapter.is_test_file = function(file_path)
+        if file_path == nil then return false end
+        for _, pattern in ipairs({
+          "%.e2e%-spec%.ts$",
+          "%.e2e%.ts$",
+          "%.spec%.ts$",
+          "%.test%.ts$",
+        }) do
+          if string.match(file_path, pattern) then
+            return true
+          end
+        end
+        return false
+      end
+
       require("neotest").setup({
         adapters = {
-          require("neotest-vitest"),
+          vitest_adapter,
           require("neotest-playwright").adapter({
             options = {
               persist_project_selection = true,
