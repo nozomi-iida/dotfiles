@@ -9,6 +9,14 @@ vim.opt.ignorecase = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- can't keep indent when press enter in comment block
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "rust",
+  callback = function()
+    vim.opt_local.comments = ":///,://!,://"
+  end,
+})
+
 -- No auto commenting new lines
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "*",

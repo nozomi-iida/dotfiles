@@ -1,7 +1,7 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    branch = "master",  -- 安定版を使用
+    branch = "master", -- 安定版を使用
     event = { 'BufReadPost', 'BufNewFile' },
     build = ':TSUpdate',
     config = function()
@@ -16,6 +16,7 @@ return {
         },
         indent = {
           enable = true,
+          disable = { "rust" },
         },
       })
     end,
