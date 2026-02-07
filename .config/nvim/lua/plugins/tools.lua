@@ -17,7 +17,10 @@ return {
     ft = 'markdown',
     init = function()
       vim.g.vim_markdown_folding_disabled = 1
-      vim.g.vim_markdown_no_default_key_mappings = 1
+      vim.g.vim_markdown_conceal_code_blocks = 0
+    end,
+    config = function()
+      vim.cmd("map <Plug> <Plug>Markdown_Fold")
     end,
   },
 
@@ -25,7 +28,7 @@ return {
   {
     'iamcco/markdown-preview.nvim',
     ft = 'markdown',
-    build = function() vim.fn['mkdp#util#install']() end,
+    build = "cd app && npm install",
     cmd = { 'MarkdownPreview', 'MarkdownPreviewStop', 'MarkdownPreviewToggle' },
     init = function()
       -- WSL2対応: カスタム関数でwslviewを使用
