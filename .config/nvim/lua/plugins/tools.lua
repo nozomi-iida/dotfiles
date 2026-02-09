@@ -21,7 +21,7 @@ return {
     end,
     config = function()
       vim.cmd("map <Plug> <Plug>Markdown_Fold")
-      vim.cmd([[imap <expr> <Tab> copilot#Accept("\<Plug>Markdown_Jump")]])
+      vim.cmd([[imap <silent><script><expr> <Tab> copilot#Accept("\<Tab>")]])
     end,
   },
 
