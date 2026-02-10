@@ -21,7 +21,14 @@ return {
     end,
     config = function()
       vim.cmd("map <Plug> <Plug>Markdown_Fold")
-      vim.cmd([[imap <silent><script><expr> <Tab> copilot#Accept("\<Tab>")]])
+      vim.cmd("map <Plug> <Plug>Markdown_Jump")
+      -- nvim-markdownの後にCopilotのTabマッピングを設定
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "markdown",
+        callback = function()
+          vim.cmd([[imap <buffer> <expr> <Tab> copilot#Accept("\<Plug>Markdown_Jump")]])
+        end,
+      })
     end,
   },
 
