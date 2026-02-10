@@ -15,7 +15,20 @@ return {
       { ';t',   function() require('telescope.builtin').help_tags() end,                                                           desc = 'Help tags' },
       { ';;',   function() require('telescope.builtin').resume() end,                                                              desc = 'Resume' },
       { ';e',   function() require('telescope.builtin').diagnostics() end,                                                         desc = 'Diagnostics' },
-      { ';s',   function() require('telescope.builtin').git_status() end,                                                          desc = 'Git status' },
+      {
+        ';s',
+        function()
+          local devicons = require('nvim-web-devicons')
+          require('telescope.builtin').git_status({
+            path_display = function(_, path)
+              local filename = vim.fn.fnamemodify(path, ':t')
+              local icon, hl = devicons.get_icon(filename, nil, { default = true })
+              return icon .. ' ' .. path, { { { 0, #icon }, hl } }
+            end,
+          })
+        end,
+        desc = 'Git status'
+      },
       {
         'sf',
         function()

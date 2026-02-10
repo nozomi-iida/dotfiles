@@ -92,6 +92,10 @@ return {
           { 'n', '<C-tab>', false },
           { 'n', 's',       false },
           { 'n', 'R',       '<cmd>DiffviewRefresh<cr>', { desc = 'Refresh' } },
+          { 'n', '<cr>', function()
+            require('diffview.actions').select_entry()
+            vim.defer_fn(function() vim.cmd('2wincmd l') end, 50)
+          end, { desc = 'Open and focus right panel' } },
         },
         file_history_panel = {
           { 'n', '<tab>',   false },
