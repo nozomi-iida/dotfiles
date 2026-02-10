@@ -17,6 +17,14 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- markdownファイルは折り返しを有効にする
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.wrap = true
+  end,
+})
+
 -- No auto commenting new lines
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "*",
