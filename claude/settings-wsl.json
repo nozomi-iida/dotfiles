@@ -35,7 +35,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "windows-notify -t 'Claude Code' -m 'タスクが完了しました'"
+            "command": "TITLE=$(tmux display-message -p '#{?#{automatic-rename},Window #{window_index},#W}'); windows-notify -t 'Claude Code - '$TITLE -m 'タスクが完了しました'"
           }
         ]
       }
@@ -46,7 +46,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "windows-notify -t 'Claude Code' -m 'Claude Codeが許可を求めています'"
+            "command": "TITLE=$(tmux display-message -p '#{?#{automatic-rename},Window #{window_index},#W}'); windows-notify -t 'Claude Code - '$TITLE -m 'Claude Codeが許可を求めています'"
           }
         ]
       }
