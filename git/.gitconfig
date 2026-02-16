@@ -15,7 +15,6 @@
 	med = merge dev
 	ss = stash
 [core]
-	excludesfile = $HOME/.gitignore
   ignorecase = false
 [credential]
   # https://qiita.com/SEIHI/items/3b73df1363859e9aac13

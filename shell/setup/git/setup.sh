@@ -4,7 +4,7 @@ SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 DOTFILES_DIR=$(cd "$SCRIPT_DIR/../../.." && pwd)
 
 echo "Create .gitignore link."
-ln -snfv "$DOTFILES_DIR/git/.gitignore" "$HOME/.gitignore"
+ln -snfv "$(pwd)/git/.gitignore" "$HOME/.config/git/ignore"
 
 echo "Setup .gitconfig"
 
