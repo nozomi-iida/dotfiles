@@ -29,6 +29,7 @@ return {
       { '<leader>gb', mode = 'n' },
       { '<leader>go', mode = 'n' },
     },
+    opts = {},
   },
 
   -- LazyGit Integration

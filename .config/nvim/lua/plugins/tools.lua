@@ -18,10 +18,9 @@ return {
     init = function()
       vim.g.vim_markdown_folding_disabled = 1
       vim.g.vim_markdown_conceal = 0
+      vim.cmd("map <Plug> <Plug>Markdown_Fold")
     end,
     config = function()
-      vim.cmd("map <Plug> <Plug>Markdown_Fold")
-      vim.cmd("map <Plug> <Plug>Markdown_Jump")
       -- nvim-markdownの後にCopilotのTabマッピングを設定
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "markdown",
