@@ -44,5 +44,8 @@ keymap.set('n', '<C-w><down>', '<C-w>-')
 keymap.set('n', '<C-w>_', '<C-w>|')
 keymap.set('n', '<C-w>|', '<C-w>_')
 
+-- Block-visual mode (C-v is used for paste)
+keymap.set('n', '<C-b>', '<C-v>')
+
 -- copy relative file path to clipboard
 keymap.set('n', ',cr', ':FileNameRelative<CR>', { noremap = true, silent = true })

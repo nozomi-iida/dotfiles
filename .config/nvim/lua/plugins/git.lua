@@ -12,9 +12,9 @@ return {
         vim.keymap.set('n', '<leader>hs', function()
           gs.stage_hunk()
           vim.cmd('silent write')
-          vim.schedule(function()
+          vim.defer_fn(function()
             gs.nav_hunk('next')
-          end)
+          end, 200)
         end, opts('Stage hunk'))
         vim.keymap.set('n', '<leader>hr', function() gs.reset_hunk() end, opts('Reset hunk'))
         vim.keymap.set('n', '<leader>hp', gs.preview_hunk, opts('Preview hunk'))
@@ -92,6 +92,7 @@ return {
           { 'n', '<s-tab>', false },
           { 'n', '<C-tab>', false },
           { 'n', 's',       false },
+          { 'n', 'f',       false },
           { 'n', 'R',       '<cmd>DiffviewRefresh<cr>', { desc = 'Refresh' } },
           { 'n', '<cr>', function()
             require('diffview.actions').select_entry()
