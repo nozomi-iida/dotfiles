@@ -94,6 +94,17 @@ return {
           { 'n', 's',       false },
           { 'n', 'f',       false },
           { 'n', 'R',       '<cmd>DiffviewRefresh<cr>', { desc = 'Refresh' } },
+          { 'n', 'W', function()
+            local win = vim.api.nvim_get_current_win()
+            local default_width = 35
+            if vim.api.nvim_win_get_width(win) > default_width then
+              vim.api.nvim_win_set_width(win, default_width)
+              vim.cmd('wincmd =')
+              vim.api.nvim_win_set_width(win, default_width)
+            else
+              vim.api.nvim_win_set_width(win, vim.o.columns)
+            end
+          end, { desc = 'Toggle panel width' } },
           { 'n', '<cr>', function()
             require('diffview.actions').select_entry()
             vim.defer_fn(function() vim.cmd('2wincmd l') end, 50)

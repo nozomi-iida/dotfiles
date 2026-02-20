@@ -23,13 +23,8 @@ return {
 
       vitest_adapter.is_test_file = function(file_path)
         if file_path == nil then return false end
-        for _, pattern in ipairs({
-          "%.e2e%-spec%.ts$",
-          "%.e2e%.ts$",
-          "%.spec%.ts$",
-          "%.test%.ts$",
-        }) do
-          if string.match(file_path, pattern) then
+        for _, keyword in ipairs({ "e2e", "spec", "test" }) do
+          if string.find(file_path, keyword) then
             return true
           end
         end
