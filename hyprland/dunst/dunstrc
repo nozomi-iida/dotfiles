@@ -1,3 +1,7 @@
 [global]
     monitor = 1
     follow = none
+
+[play_sound]
+    summary = "*"
+    script = /home/nozomi/ghq/github.com/nozomi-iida/dotfiles/hyprland/dunst/notify-sound.sh
