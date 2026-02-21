@@ -14,8 +14,9 @@ keymap:
       C-n: Down
       C-a: Home
       C-e: End
-      C-d: Delete
-      C-h: BackSpace
-      C-k: [Shift-End, Delete]
-      C-w: [C-BackSpace]
-      Alt-f: C-f
+      # C-d: Delete
+      # C-h: BackSpace
+      # C-k: [Shift-End, Delete]
+      # C-w: [C-BackSpace]
+      C-Shift-f: C-f
+
