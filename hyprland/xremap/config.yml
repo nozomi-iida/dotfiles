@@ -8,6 +8,7 @@ keymap:
     application:
       not: [Emacs, kitty, Alacritty]  # Exclude terminals/Emacs
     remap:
+      C-Shift-f: C-f
       C-f: Right
       C-b: Left
       C-p: Up
@@ -18,5 +19,4 @@ keymap:
       # C-h: BackSpace
       # C-k: [Shift-End, Delete]
       # C-w: [C-BackSpace]
-      C-Shift-f: C-f
 
