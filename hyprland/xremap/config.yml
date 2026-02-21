@@ -1,0 +1,21 @@
+modmap:
+  - name: Emacs-like cursor movement
+    remap:
+      CapsLock: Ctrl_L  # Optional: remap CapsLock to Ctrl
+
+keymap:
+  - name: Emacs cursor movement
+    application:
+      not: [Emacs, kitty, Alacritty]  # Exclude terminals/Emacs
+    remap:
+      C-f: Right
+      C-b: Left
+      C-p: Up
+      C-n: Down
+      C-a: Home
+      C-e: End
+      C-d: Delete
+      C-h: BackSpace
+      C-k: [Shift-End, Delete]
+      C-w: [C-BackSpace]
+      Alt-f: C-f
