@@ -1,3 +1,8 @@
+# Auto-start tmux
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+  tmux new-session
+fi
+
 export EDITOR=vim
 setopt nonomatch
 

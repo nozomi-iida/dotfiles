@@ -83,6 +83,22 @@ return {
     },
   },
 
+  -- Floating Terminal
+  {
+    'akinsho/toggleterm.nvim',
+    version = "*",
+    keys = {
+      { [[<C-\>]], desc = "Toggle floating terminal" },
+    },
+    opts = {
+      direction = "float",
+      float_opts = {
+        border = "curved",
+      },
+      open_mapping = [[<C-\>]],
+    },
+  },
+
   -- Search and Replace
   {
     "nvim-pack/nvim-spectre",
