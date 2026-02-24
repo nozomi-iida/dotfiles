@@ -50,6 +50,7 @@ alias fig="docker compose"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
+complete -C 'aws_completer' aws
 
 # source $HOME/.asdf/asdf.sh
 export VOLTA_HOME="$HOME/.volta"
