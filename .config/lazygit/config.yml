@@ -1,0 +1,10 @@
+os:
+  open: 'wslview {{filename}}'
+  edit: 'nvim --server "$NVIM" --remote {{filename}}'
+  editAtLine: 'nvim --server "$NVIM" --remote {{filename}}; nvim --server "$NVIM" --remote-send ":{{line}}<CR>"'
+customCommands:
+  - key: "<c-a>"
+    context: "files"
+    description: "AI commit message"
+    command: "bash -c 'msg=$(git diff --cached | claude -p \"この差分に対して適切なコミットメッセージを生成してください。フォーマット: <prefix>: <日本語の変更概要>。prefixはfeat/fix/chore/refactor/docs/test/style/perf/ciから選択。タイトル一行のみ出力し、本文や補足説明やCo-Authored-Byなどのトレーラーは付けないこと。\") && git commit -e -m \"$msg\"'"
+    output: terminal
