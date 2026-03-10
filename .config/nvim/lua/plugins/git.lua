@@ -60,7 +60,7 @@ return {
       { '<leader>gH', '<cmd>DiffviewFileHistory<cr>',   desc = 'Branch History' },
     },
     opts = {
-      watch_index = false,
+      watch_index = true,
       hooks = {
         view_opened = function()
           vim.cmd('tabmove')
