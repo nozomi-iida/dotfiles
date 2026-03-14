@@ -54,6 +54,13 @@ return {
   {
     'sindrets/diffview.nvim',
     cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
+    init = function()
+      vim.api.nvim_create_user_command('DiffviewBaseDiff', function()
+        local base = vim.fn.system("git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null"):gsub("refs/remotes/origin/", ""):gsub("%s+", "")
+        if base == "" then base = "main" end
+        vim.cmd("DiffviewOpen " .. base .. "...HEAD")
+      end, { desc = "Diff against base branch" })
+    end,
     keys = {
       { '<leader>gd', '<cmd>DiffviewOpen<cr>',          desc = 'Open Diffview' },
       { '<leader>gh', '<cmd>DiffviewFileHistory %<cr>', desc = 'File History' },
