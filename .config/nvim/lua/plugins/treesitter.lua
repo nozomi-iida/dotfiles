@@ -1,23 +1,31 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    branch = "master", -- 安定版を使用
     event = { 'BufReadPost', 'BufNewFile' },
     build = ':TSUpdate',
     config = function()
-      require('nvim-treesitter.configs').setup({
-        ensure_installed = {
-          "go", "tsx", "toml", "json", "yaml",
-          "css", "html", "lua", "graphql", "typescript", "vimdoc"
+      -- MoonBit tree-sitter パーサーを登録
+      require("nvim-treesitter.parsers").moonbit = {
+        tier = 4,
+        install_info = {
+          url = "https://github.com/moonbitlang/tree-sitter-moonbit",
+          revision = "main",
+          branch = "main",
+          queries = "queries",
         },
-        auto_install = true,
-        highlight = {
-          enable = true,
-        },
-        indent = {
-          enable = true,
-          disable = { "rust" },
-        },
+      }
+
+      require('nvim-treesitter').install({
+        "go", "tsx", "toml", "json", "yaml",
+        "css", "html", "lua", "graphql", "typescript", "vimdoc",
+        "moonbit",
+      })
+
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function(args)
+          pcall(vim.treesitter.start, args.buf)
+          vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
       })
     end,
   },
