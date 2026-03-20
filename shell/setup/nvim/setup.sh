@@ -25,5 +25,6 @@ rm Hack.zip
 # install ripgrepg to use telescope.live_grep
 sudo apt install ripgrep -y
 go install github.com/jesseduffield/lazygit@latest
-mkdir -p ~/.config/lazygit
-ln -snfv "$(pwd)/.config/lazygit/config.yml" "$HOME/.config/lazygit/config.yml"
+lazygit_config_dir="$(lazygit -cd)"
+mkdir -p "$lazygit_config_dir"
+ln -snfv "$(pwd)/.config/lazygit/config.yml" "$lazygit_config_dir/config.yml"
