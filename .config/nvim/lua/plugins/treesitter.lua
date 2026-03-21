@@ -17,8 +17,7 @@ return {
 
       require('nvim-treesitter').install({
         "go", "tsx", "toml", "json", "yaml",
-        "css", "html", "lua", "graphql", "typescript", "vimdoc",
-        "moonbit",
+        "css", "html", "lua", "graphql", "typescript", "vimdoc"
       })
 
       vim.api.nvim_create_autocmd('FileType', {
