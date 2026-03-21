@@ -6,5 +6,15 @@ customCommands:
   - key: "<c-a>"
     context: "files"
     description: "AI commit message"
-    command: "bash -c 'msg=$(git diff --cached | claude --no-session-persistence -p \"この差分に対して適切なコミットメッセージを生成してください。フォーマット: <prefix>: <日本語の変更概要>。prefixはfeat/fix/chore/refactor/docs/test/style/perf/ciから選択。タイトル一行のみ出力し、本文や補足説明やCo-Authored-Byなどのトレーラーは付けないこと。バッククォートやマークダウン記法は一切使わず、プレーンテキストのみで出力すること。\") && git commit -e -m \"$msg\"'"
+    command: |
+      bash -c '\
+        msg=$(git diff --cached | \
+          claude --no-session-persistence \
+          --model claude-haiku-4-5-20251001 \
+          -p "この差分に対して適切なコミットメッセージを生成してください。\
+          フォーマット: <prefix>: <日本語の変更概要>。\
+          prefixはfeat/fix/chore/refactor/docs/test/style/perf/ciから選択。\
+          タイトル一行のみ出力し、本文や補足説明やCo-Authored-Byなどのトレーラーは付けないこと。\
+          バッククォートやマークダウン記法は一切使わず、プレーンテキストのみで出力すること。") \
+        && git commit -e -m "$msg"'
     output: terminal
