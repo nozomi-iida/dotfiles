@@ -23,5 +23,6 @@ lspconfig.setup {
     -- "eslint_d",
     -- 'preetierd'
   },
-  automatic_installation = true
+  automatic_installation = true,
+  automatic_enable = false
 }
