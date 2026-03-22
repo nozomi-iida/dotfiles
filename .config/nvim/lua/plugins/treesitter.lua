@@ -21,7 +21,7 @@ return {
       })
 
       require('nvim-treesitter').install({
-        "go", "tsx", "toml", "json", "yaml",
+        "bash", "go", "tsx", "toml", "json", "yaml",
         "css", "html", "lua", "graphql", "typescript", "vimdoc"
       })
 
