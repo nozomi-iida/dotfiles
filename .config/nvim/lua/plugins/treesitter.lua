@@ -4,16 +4,21 @@ return {
     event = { 'BufReadPost', 'BufNewFile' },
     build = ':TSUpdate',
     config = function()
-      -- MoonBit tree-sitter パーサーを登録
-      require("nvim-treesitter.parsers").moonbit = {
-        tier = 4,
-        install_info = {
-          url = "https://github.com/moonbitlang/tree-sitter-moonbit",
-          revision = "main",
-          branch = "main",
-          queries = "queries",
-        },
-      }
+      -- MoonBit tree-sitter パーサーを登録（TSUpdateイベント時にインストール可能にする）
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "TSUpdate",
+        callback = function()
+          require("nvim-treesitter.parsers").moonbit = {
+            tier = 4,
+            install_info = {
+              url = "https://github.com/moonbitlang/tree-sitter-moonbit",
+              revision = "main",
+              branch = "main",
+              queries = "queries",
+            },
+          }
+        end,
+      })
 
       require('nvim-treesitter').install({
         "go", "tsx", "toml", "json", "yaml",
