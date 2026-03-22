@@ -76,30 +76,3 @@ vim.lsp.enable({
   'eslint',
   'moonbit_lsp',
 })
-
--- MoonBit errorformat設定
-local moonbit_efm = table.concat({
-  "%-Gfailed:%#",
-  "%-Gerror:%#",
-  "%-G%.%#╭%#",
-  "%-G%.%#│%#",
-  "%-G%.%#╰%#",
-  "%-G%.%#───%#",
-  "%-GFinished%.%#",
-  "%-Gmoon:%#",
-  "%EError:%m",
-  "%C%\\[ %f:%l:%c %\\]%.%#",
-  "%C\\s%#╰── %m",
-  "%Z%.%#───╯%#",
-  "%WWarning:%m",
-  "%C%\\[ %f:%l:%c %\\]%.%#",
-  "%C\\s%#╰── %m",
-  "%Z%.%#───╯%#",
-}, ",")
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "moonbit",
-  callback = function()
-    vim.opt_local.errorformat = moonbit_efm
-  end,
-})
