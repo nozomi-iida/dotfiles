@@ -74,4 +74,5 @@ vim.lsp.enable({
   'clangd',
   'gopls',
   'eslint',
+  'moonbit_lsp',
 })
