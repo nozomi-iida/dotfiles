@@ -27,8 +27,11 @@ export PATH=$GOPATH/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
 
 # Deno
-export DENO_INSTALL="/home/nozomi/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
+if [ -d "$HOME/.deno" ]; then
+  export DENO_INSTALL="$HOME/.deno"
+  export PATH="$DENO_INSTALL/bin:$PATH"
+  . "/home/nozomi/.deno/env"
+fi
 
 # ghq + peco
 ghq_peco_repo() {
@@ -52,15 +55,19 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 complete -C 'aws_completer' aws
 
-# source $HOME/.asdf/asdf.sh
+# asdf
+if [ -d "$HOME/.asdf" ]; then
+  source $HOME/.asdf/asdf.sh
+fi
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
-# bun completions
-[ -s "/home/nozomi/.bun/_bun" ] && source "/home/nozomi/.bun/_bun"
 # bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+if [ -d "$HOME/.bun" ]; then
+  [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$PATH"
+fi
 
 # Add npm global packages to PATH
 NPM_PREFIX=$(npm config get prefix)
@@ -76,4 +83,7 @@ esac
 
 # Created by `pipx` on 2025-01-16 03:48:15
 export PATH="$PATH:/home/nozomi/.local/bin"
-. "/home/nozomi/.deno/env"
+# moonbit
+if [ -d "$HOME/.moon" ]; then
+  export PATH="$HOME/.moon/bin:$PATH"
+fi
