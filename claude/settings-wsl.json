@@ -21,7 +21,15 @@
       "mcp__playwright__browser_close"
     ],
     "deny": [
-      "Bash(aws:*)"
+      "Bash(aws:*)",
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/credentials*)",
+      "Read(**/*secret*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)"
     ],
     "ask": [
       "Bash(rm:*)",
