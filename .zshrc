@@ -15,6 +15,12 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
+# mise
+# Created by `pipx` on 2025-01-16 03:48:15
+export PATH="$PATH:/home/nozomi/.local/bin"
+if command -v mise &> /dev/null; then
+  eval "$(mise activate zsh)"
+fi
 
 # Global Path config
 export PATH=$HOME/command:$PATH
@@ -81,8 +87,6 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-# Created by `pipx` on 2025-01-16 03:48:15
-export PATH="$PATH:/home/nozomi/.local/bin"
 # moonbit
 if [ -d "$HOME/.moon" ]; then
   export PATH="$HOME/.moon/bin:$PATH"

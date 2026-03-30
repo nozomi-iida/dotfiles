@@ -20,10 +20,13 @@ return {
         end,
       })
 
-      require('nvim-treesitter').install({
+      local langs = {
         "bash", "go", "tsx", "toml", "json", "yaml",
-        "css", "html", "lua", "graphql", "typescript", "vimdoc"
-      })
+        "css", "html", "lua", "graphql", "typescript", "vimdoc",
+      }
+      for _, lang in ipairs(langs) do
+        pcall(vim.treesitter.language.add, lang)
+      end
 
       vim.api.nvim_create_autocmd('FileType', {
         callback = function(args)
