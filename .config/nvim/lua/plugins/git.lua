@@ -18,6 +18,23 @@ return {
         end, opts('Stage hunk'))
         vim.keymap.set('n', '<leader>hr', function() gs.reset_hunk() end, opts('Reset hunk'))
         vim.keymap.set('n', '<leader>hp', gs.preview_hunk, opts('Preview hunk'))
+        vim.keymap.set('n', '<leader>gp', function()
+          local line = vim.fn.line('.')
+          local file = vim.fn.expand('%:p')
+          local blame = vim.fn.system(string.format('git blame -L %d,%d --porcelain %s', line, line, file))
+          local hash = blame:match('^(%x+)')
+          if not hash or hash:match('^0+$') then
+            vim.notify('No commit found (uncommitted change)', vim.log.levels.WARN)
+            return
+          end
+          local remote = vim.fn.system('gh repo view --json nameWithOwner -q .nameWithOwner'):gsub('%s+', '')
+          local url = vim.fn.system(string.format('gh api repos/%s/commits/%s/pulls --jq ".[0].html_url"', remote, hash)):gsub('%s+', '')
+          if url == '' or url == 'null' then
+            vim.notify('No PR found for this commit', vim.log.levels.WARN)
+            return
+          end
+          vim.ui.open(url)
+        end, opts('Open PR for this line'))
       end,
     },
   },
