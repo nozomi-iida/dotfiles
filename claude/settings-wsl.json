@@ -29,7 +29,8 @@
       "Read(**/credentials*)",
       "Read(**/*secret*)",
       "Read(**/*.pem)",
-      "Read(**/*.key)"
+      "Read(**/*.key)",
+      "Read(.mcp.json)"
     ],
     "ask": [
       "Bash(rm:*)",

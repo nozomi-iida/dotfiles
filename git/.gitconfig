@@ -1,19 +1,20 @@
 [alias]
-	branch-name = !git branch --show-current
-	st = status
-	ch = checkout
-	chb = checkout -b
-	chd = checkout dev
-	br = !git -P branch
-	brd = branch -D
-	cm = commit -m
-	ad = add .
-	adp = add -p
-	ps = !git push origin $(git branch-name)
-	pl = !git pull origin $(git branch-name)
-	me = merge
-	med = merge dev
-	ss = stash
+  branch-name = !git branch --show-current
+  st = status
+  ch = checkout
+  chb = checkout -b
+  # base branchからブランチ作成 (tracking付き) usage: git chbb feature/XXX
+  chbb = !base=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@') && git fetch origin $base && git checkout -b \"$1\" origin/$base && :
+  br = !git -P branch
+  brd = branch -D
+  cm = commit -m
+  ad = add .
+  adp = add -p
+  ps = !git push origin $(git branch-name)
+  pl = !git pull origin $(git branch-name)
+  me = merge
+  med = merge dev
+  ss = stash
 [core]
   ignorecase = false
 [credential]
