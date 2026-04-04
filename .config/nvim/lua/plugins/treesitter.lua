@@ -22,7 +22,7 @@ return {
 
       local langs = {
         "bash", "go", "rust", "tsx", "toml", "json", "yaml",
-        "css", "html", "lua", "graphql", "typescript", "vimdoc",
+        "css", "html", "lua", "graphql", "typescript", "vimdoc", "prisma",
       }
       for _, lang in ipairs(langs) do
         pcall(vim.treesitter.language.add, lang)
