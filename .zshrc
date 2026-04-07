@@ -16,7 +16,6 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # mise
-# Created by `pipx` on 2025-01-16 03:48:15
 export PATH="$PATH:/home/nozomi/.local/bin"
 if command -v mise &> /dev/null; then
   eval "$(mise activate zsh)"
@@ -26,6 +25,11 @@ fi
 export PATH=$HOME/command:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=$PATH:/snap/bin:$PATH
+
+# Rust
+if [ -f "$HOME/.cargo/env" ]; then
+  . "$HOME/.cargo/env"
+fi
 
 # Golang
 export GOPATH=$HOME/go

@@ -21,7 +21,7 @@ return {
       })
 
       local langs = {
-        "bash", "go", "tsx", "toml", "json", "yaml",
+        "bash", "go", "rust", "tsx", "toml", "json", "yaml",
         "css", "html", "lua", "graphql", "typescript", "vimdoc",
       }
       for _, lang in ipairs(langs) do
