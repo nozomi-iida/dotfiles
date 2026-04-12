@@ -18,6 +18,7 @@ local format_enabled_lsp = {
   "rust_analyzer",
   "lua_ls",
   "eslint",
+  "ruff",
 }
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
@@ -75,4 +76,6 @@ vim.lsp.enable({
   'gopls',
   'eslint',
   'moonbit_lsp',
+  'pyright',
+  'ruff',
 })

@@ -18,6 +18,8 @@ lspconfig.setup {
     "ts_ls",
     "stylelint_lsp",
     "gopls",
+    "pyright",
+    "ruff",
     -- "cspell",
     -- mason-null-lsを使ってしかインストールできないためコメントアウト
     -- "eslint_d",
