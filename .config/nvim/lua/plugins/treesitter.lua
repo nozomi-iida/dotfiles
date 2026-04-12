@@ -20,19 +20,13 @@ return {
         end,
       })
 
-      local langs = {
-        "bash", "go", "rust", "tsx", "toml", "json", "yaml",
-        "css", "html", "lua", "graphql", "typescript", "vimdoc", "prisma", "python",
-      }
-      for _, lang in ipairs(langs) do
-        pcall(vim.treesitter.language.add, lang)
-      end
-
-      vim.api.nvim_create_autocmd('FileType', {
-        callback = function(args)
-          pcall(vim.treesitter.start, args.buf)
-          vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-        end,
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "bash", "go", "rust", "tsx", "toml", "json", "yaml",
+          "css", "html", "lua", "graphql", "typescript", "vimdoc", "prisma", "python",
+        },
+        highlight = { enable = true },
+        indent = { enable = true },
       })
     end,
   },
