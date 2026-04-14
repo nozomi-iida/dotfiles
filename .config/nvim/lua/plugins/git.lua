@@ -21,7 +21,8 @@ return {
         vim.keymap.set('n', '<leader>gp', function()
           local line = vim.fn.line('.')
           local file = vim.fn.expand('%:p')
-          local blame = vim.fn.system(string.format('git blame -L %d,%d --porcelain %s', line, line, file))
+          local contents = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), '\n') .. '\n'
+          local blame = vim.fn.system({ 'git', 'blame', '-L', line .. ',' .. line, '--porcelain', '--contents', '-', '--', file }, contents)
           local hash = blame:match('^(%x+)')
           if not hash or hash:match('^0+$') then
             vim.notify('No commit found (uncommitted change)', vim.log.levels.WARN)
@@ -33,7 +34,11 @@ return {
             vim.notify('No PR found for this commit', vim.log.levels.WARN)
             return
           end
-          vim.ui.open(url)
+          if vim.fn.has('wsl') == 1 then
+            vim.fn.jobstart({ 'wslview', url }, { detach = true })
+          else
+            vim.ui.open(url)
+          end
         end, opts('Open PR for this line'))
       end,
     },
