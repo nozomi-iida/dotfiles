@@ -20,13 +20,24 @@ return {
         end,
       })
 
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = {
-          "bash", "go", "rust", "tsx", "toml", "json", "yaml",
-          "css", "html", "lua", "graphql", "typescript", "vimdoc", "prisma", "python",
-        },
-        highlight = { enable = true },
-        indent = { enable = true },
+      local langs = {
+        "bash", "go", "rust", "tsx", "toml", "json", "yaml",
+        "css", "html", "lua", "graphql", "typescript", "vimdoc", "prisma", "python",
+      }
+
+      -- 未インストールのパーサーを自動インストール
+      local installed = require("nvim-treesitter.config").get_installed()
+      for _, lang in ipairs(langs) do
+        if not vim.list_contains(installed, lang) then
+          vim.cmd("TSInstall " .. lang)
+        end
+      end
+
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function(args)
+          pcall(vim.treesitter.start, args.buf)
+          vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
       })
     end,
   },
