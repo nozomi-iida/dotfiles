@@ -26,9 +26,8 @@ return {
       }
 
       -- 未インストールのパーサーを自動インストール
-      local installed = require("nvim-treesitter.config").get_installed()
       for _, lang in ipairs(langs) do
-        if not vim.list_contains(installed, lang) then
+        if not pcall(vim.treesitter.language.inspect, lang) then
           vim.cmd("TSInstall " .. lang)
         end
       end
