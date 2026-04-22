@@ -2,7 +2,7 @@
 allowed-tools:
   - Bash
   - AskUserQuestion
-description: Notionリンクとユーザー提供の要件からブランチ名を生成し、git gtrでworktreeを作成する。「worktree作って」「WT切って」と言われた時に使用。
+description: 参考リンク(任意)とユーザー提供の要件からブランチ名を生成し、git gtrでworktreeを作成する。「worktree作って」「WT切って」と言われた時に使用。
 targets:
   - "*"
 ---
@@ -11,15 +11,16 @@ targets:
 
 ## 概要
 
-ユーザーから提供されたNotionリンクと要件の概要を分析し、適切なブランチ名を生成して `git gtr new` でworktreeを作成する。
+ユーザーから提供された要件の概要（任意で参考リンクも）を分析し、適切なブランチ名を生成して `git gtr new` でworktreeを作成する。
 
 ## 引数フォーマット
 
 ```
-$ARGUMENTS = [NotionリンクURL] [要件の概要テキスト]
+$ARGUMENTS = [参考リンクURL(任意)] [要件の概要テキスト]
 ```
 
-引数が不足している場合はStep 1で対話補完する。
+- 参考リンク(Notion / GitHub Issue / その他URL)は **任意**。URLが含まれていなければテキストのみで処理する。
+- 要件の概要テキストは **必須**。無い場合はStep 1で対話補完する。
 
 ## 実行手順
 
@@ -27,10 +28,11 @@ $ARGUMENTS = [NotionリンクURL] [要件の概要テキスト]
 
 `$ARGUMENTS` を解析し、以下を確認する:
 
-1. **Notionリンク**: URLが含まれていればそのまま使う
-2. **要件の概要**: テキストが含まれていればそのまま使う
+1. **参考リンク** (任意): URLが含まれていれば抽出して保持する。無ければ無しとして扱い、聞かない。
+2. **要件の概要** (必須): URLを除いた残りのテキストを要件として扱う。
 
-**どちらかが不足している場合、まとめて1回で質問する。**
+**要件の概要が取れない場合のみ、AskUserQuestionで1回だけ質問する。**
+参考リンクは任意なので、不足していてもこちらからは聞かない。
 
 ### Step 2: ブランチ名の生成
 
@@ -72,7 +74,7 @@ git gtr new {{ブランチ名}}
 ### Step 5: 結果の表示
 
 - 作成されたworktreeのパスを表示
-- Notionリンクを再掲（作業時の参照用）
+- 参考リンクが指定されていた場合のみ再掲（作業時の参照用）
 
 ## 重要な注意事項
 
@@ -83,10 +85,16 @@ git gtr new {{ブランチ名}}
 ## 使用例
 
 ```bash
-# Notionリンクと要件を一緒に渡す
+# 参考リンク + 要件
 /create-worktree https://notion.so/xxx ユーザープロフィール画面の追加
 
-# 引数なし（対話で補完）
+# GitHub Issueリンク + 要件
+/create-worktree https://github.com/org/repo/issues/42 ログインバリデーションのバグ修正
+
+# 要件テキストのみ(リンクなし)
+/create-worktree API レスポンスのキャッシュ導入
+
+# 引数なし(要件を対話で補完)
 /create-worktree
 ```
 
