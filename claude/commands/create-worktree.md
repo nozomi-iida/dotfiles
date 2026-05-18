@@ -53,18 +53,17 @@ AskUserQuestionで `HR-XXXX` 形式のIDを質問する。
 
 - **タイトル**: 要件の本質を表す簡潔な英語のケバブケース(例: `add-user-profile`, `login-validation`)。日本語要件は英訳して要約。最大40文字程度。
 - **ID**: Step 2で取得した `HR-XXXX` 形式の文字列をそのまま使う。
-- **フォーマット**:
-  - **Notion URL ありの場合**: `{ID}/{title}` (例: `HR-6653/add-user-profile`)
-  - **Notion URL なしの場合**: `{prefix}/{ID}-{title}` (例: `feature/HR-6653-add-user-profile`)
-    - prefixは原則 `feature/`。明確にバグ修正・リファクタ・雑務の場合は `fix/`, `refactor/`, `chore/`。
+- **フォーマット**: `{prefix}/{ID}-{title}` (例: `feature/HR-6653-add-user-profile`)
+  - Notion URLの有無に関わらず常にこの形式を使う。
+  - prefixは原則 `feature/`。明確にバグ修正・リファクタ・雑務の場合は `fix/`, `refactor/`, `chore/`。
 - 全体で最大60文字以内が望ましい。
 
 #### 例
 
 | Notion URL | 要件 | 取得ID | ブランチ名 |
 |-----------|------|--------|-----------|
-| あり | ユーザープロフィール画面の追加 | `HR-6653` | `HR-6653/add-user-profile` |
-| あり | ログインバリデーションのバグ修正 | `HR-7012` | `HR-7012/login-validation` |
+| あり | ユーザープロフィール画面の追加 | `HR-6653` | `feature/HR-6653-add-user-profile` |
+| あり | ログインバリデーションのバグ修正 | `HR-7012` | `fix/HR-7012-login-validation` |
 | なし | API レスポンスのキャッシュ導入(ID: HR-7100) | `HR-7100` | `feature/HR-7100-api-response-cache` |
 | なし | リファクタ: 古い認証ミドルウェア削除(ID: HR-7250) | `HR-7250` | `refactor/HR-7250-remove-old-auth` |
 
@@ -74,7 +73,7 @@ AskUserQuestionで `HR-XXXX` 形式のIDを質問する。
 
 ```
 ID: HR-6653 (URLから抽出 / ユーザー入力)
-ブランチ名: HR-6653/add-user-profile
+ブランチ名: feature/HR-6653-add-user-profile
 このブランチ名でworktreeを作成しますか？（変更があれば指定してください）
 ```
 
@@ -103,11 +102,11 @@ git gtr new {{ブランチ名}}
 ```bash
 # Notion URL + 要件 (URLからID抽出)
 /create-worktree https://notion.so/HR-6653-xxx ユーザープロフィール画面の追加
-# → HR-6653/add-user-profile
+# → feature/HR-6653-add-user-profile
 
 # Notion URL + 要件 (URLスラッグにID無し、本文から抽出)
 /create-worktree https://notion.so/some-page-abc123 ログインバリデーションのバグ修正
-# → HR-XXXX/login-validation
+# → fix/HR-XXXX-login-validation
 
 # 要件テキストのみ → IDを対話で質問
 /create-worktree API レスポンスのキャッシュ導入
