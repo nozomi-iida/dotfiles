@@ -34,7 +34,6 @@
     "ask": [
       "Bash(rm:*)",
       "Bash(mv:*)",
-      "Bash(git push:*)",
       "Bash(npm install:*)",
       "Bash(pnpm install:*)"
     ]
