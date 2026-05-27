@@ -18,7 +18,10 @@ return {
     init = function()
       vim.g.vim_markdown_folding_disabled = 1
       vim.g.vim_markdown_conceal = 0
-      vim.cmd("map <Plug> <Plug>Markdown_Fold")
+      -- 各デフォルトマップを無効化。hasmapto判定を立てるためLHSは衝突しないユニークな擬似キーにする
+      vim.cmd("map <Plug>NvimMarkdownDisableFold <Plug>Markdown_Fold")
+      -- ]c (現在の見出しへ移動) を無効化し、diffview等でdiff標準の ]c (次の変更へ) を活かす
+      vim.cmd("map <Plug>NvimMarkdownDisableCurHeader <Plug>Markdown_MoveToCurHeader")
     end,
     config = function()
       -- nvim-markdownの後にCopilotのTabマッピングを設定
