@@ -6,7 +6,7 @@ end
 
 vim.cmd('command! FileName lua FileName()')
 
-function FileNameRelative()
+function FileNameRelative(line1, line2)
   local filepath = vim.fn.expand('%:p')
   local git_root = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
   local relative
@@ -15,11 +15,19 @@ function FileNameRelative()
   else
     relative = vim.fn.expand('%:.')
   end
+  if line1 and line2 then
+    if line1 == line2 then
+      relative = relative .. ':' .. line1
+    else
+      relative = relative .. ':' .. line1 .. '-' .. line2
+    end
+  end
   vim.fn.setreg('*', relative)
   vim.fn.setreg('+', relative)
 end
 
 vim.cmd('command! FileNameRelative lua FileNameRelative()')
+vim.cmd('command! -range FileNameRelativeRange lua FileNameRelative(<line1>, <line2>)')
 
 -- insetモードでCtrl-Dを2回押すと、YYYY-MM-DD HH:MM:SS形式の日付と時間を挿入
 vim.api.nvim_set_keymap('i', '<C-D><C-D>', '<C-R>=strftime("`%Y-%m-%d %H:%M:%S`")<CR><ESC>',

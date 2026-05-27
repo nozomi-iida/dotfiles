@@ -49,3 +49,5 @@ keymap.set('n', '<C-b>', '<C-v>')
 
 -- copy relative file path to clipboard
 keymap.set('n', ',cr', ':FileNameRelative<CR>', { noremap = true, silent = true })
+-- copy relative file path with selected line numbers (visual mode)
+keymap.set('x', ',cr', ':FileNameRelativeRange<CR>', { noremap = true, silent = true })
