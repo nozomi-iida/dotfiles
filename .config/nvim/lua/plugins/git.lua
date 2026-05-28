@@ -16,20 +16,26 @@ return {
             gs.nav_hunk('next')
           end, 200)
         end, opts('Stage hunk'))
+        vim.keymap.set('v', '<leader>hs', function()
+          gs.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+          vim.cmd('silent write')
+        end, opts('Stage selection'))
         vim.keymap.set('n', '<leader>hr', function() gs.reset_hunk() end, opts('Reset hunk'))
         vim.keymap.set('n', '<leader>hp', gs.preview_hunk, opts('Preview hunk'))
         vim.keymap.set('n', '<leader>gp', function()
           local line = vim.fn.line('.')
           local file = vim.fn.expand('%:p')
           local contents = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), '\n') .. '\n'
-          local blame = vim.fn.system({ 'git', 'blame', '-L', line .. ',' .. line, '--porcelain', '--contents', '-', '--', file }, contents)
+          local blame = vim.fn.system(
+            { 'git', 'blame', '-L', line .. ',' .. line, '--porcelain', '--contents', '-', '--', file }, contents)
           local hash = blame:match('^(%x+)')
           if not hash or hash:match('^0+$') then
             vim.notify('No commit found (uncommitted change)', vim.log.levels.WARN)
             return
           end
           local remote = vim.fn.system('gh repo view --json nameWithOwner -q .nameWithOwner'):gsub('%s+', '')
-          local url = vim.fn.system(string.format('gh api repos/%s/commits/%s/pulls --jq ".[0].html_url"', remote, hash)):gsub('%s+', '')
+          local url = vim.fn.system(string.format('gh api repos/%s/commits/%s/pulls --jq ".[0].html_url"', remote, hash))
+              :gsub('%s+', '')
           if url == '' or url == 'null' then
             vim.notify('No PR found for this commit', vim.log.levels.WARN)
             return
@@ -78,7 +84,8 @@ return {
     cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
     init = function()
       vim.api.nvim_create_user_command('DiffviewDiffBase', function()
-        local base = vim.fn.system("git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null"):gsub("refs/remotes/origin/", ""):gsub("%s+", "")
+        local base = vim.fn.system("git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null"):gsub("refs/remotes/origin/",
+          ""):gsub("%s+", "")
         if base == "" then base = "main" end
         vim.cmd("DiffviewOpen " .. base .. "...HEAD")
       end, { desc = "Diff against base branch" })
