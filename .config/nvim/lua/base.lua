@@ -48,3 +48,23 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end
   end
 })
+
+-- クリップボードはシステムのものを使う
+vim.opt.clipboard = "unnamedplus"
+
+-- WAYLAND_DISPLAYが設定されているとneovimはwl-copyを選ぶが、
+-- WSLにはWaylandサーバーが無いため失敗する。X11(xclip)を使うよう固定する。
+if vim.fn.has("mac") == 0 and vim.fn.executable("xclip") == 1 then
+  vim.g.clipboard = {
+    name = "xclip",
+    copy = {
+      ["+"] = "xclip -selection clipboard",
+      ["*"] = "xclip -selection primary",
+    },
+    paste = {
+      ["+"] = "xclip -selection clipboard -o",
+      ["*"] = "xclip -selection primary -o",
+    },
+    cache_enabled = 0,
+  }
+end

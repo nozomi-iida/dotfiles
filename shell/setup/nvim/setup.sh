@@ -5,10 +5,6 @@ for configFile in .config/*; do
   ln -snfv "$(pwd)/$configFile" "$HOME/$configFile"
 done
 
-sudo apt install tmux -y
-sudo snap install nvim --classic
-sudo apt install xclip
-
 # install nerd font(Hack)
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Hack.zip
 filename=Hack.zip
@@ -22,9 +18,6 @@ mv ${filename} ~/.fonts/
 fc-cache -fv
 rm Hack.zip
 
-# install ripgrepg to use telescope.live_grep
-sudo apt install ripgrep -y
-go install github.com/jesseduffield/lazygit@latest
 lazygit_config_dir="$(lazygit -cd)"
 mkdir -p "$lazygit_config_dir"
 ln -snfv "$(pwd)/.config/lazygit/config.yml" "$lazygit_config_dir/config.yml"
