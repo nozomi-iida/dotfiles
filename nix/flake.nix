@@ -16,7 +16,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      homeConfigurations."nozomi" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.default = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         modules = [ ./home.nix ];
