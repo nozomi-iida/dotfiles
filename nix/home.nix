@@ -1,8 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   home.username = "nozomi";
-  home.homeDirectory = "/home/nozomi";
+  home.homeDirectory =
+    if pkgs.stdenv.isDarwin then "/Users/nozomi" else "/home/nozomi";
 
   home.stateVersion = "26.05";
 
@@ -10,7 +11,6 @@
     pkgs.git
     pkgs.neovim
     pkgs.tmux
-    pkgs.xclip
     pkgs.awscli2
     pkgs.peco
     pkgs.ghq
@@ -18,6 +18,10 @@
     pkgs.lazygit
     pkgs.unzip
     pkgs.wget
+  ]
+  # Linux(X11)専用。Macはpbcopy内蔵なので不要
+  ++ lib.optionals pkgs.stdenv.isLinux [
+    pkgs.xclip
   ];
 
   home.file = {};

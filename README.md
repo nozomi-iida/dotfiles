@@ -11,13 +11,13 @@ curl -sSfL https://artifacts.nixos.org/nix-installer | sh -s -- install --enable
 
 # CLIツールをインストール（flakeは追跡ファイルしか見ないため git add が必要）
 git add nix/
-nix run home-manager/master -- switch --flake ./nix#default
+nix run home-manager/master -- switch --flake ./nix#wsl
 ```
 
 2回目以降（ツールの追加・更新）は以下で反映する。
 
 ```bash
-home-manager switch --flake ./nix#default
+home-manager switch --flake ./nix#wsl
 ```
 
 ## zshのセットアップ

@@ -12,14 +12,18 @@
   outputs =
     { nixpkgs, home-manager, ... }:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      # systemを渡すと、その環境用のhome-manager設定を作るヘルパー
+      mkHome =
+        system:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          modules = [ ./home.nix ];
+        };
     in
     {
-      homeConfigurations.default = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-
-        modules = [ ./home.nix ];
+      homeConfigurations = {
+        wsl = mkHome "x86_64-linux"; # WSL / Linux
+        mac = mkHome "aarch64-darwin"; # Mac (Apple Silicon)
       };
     };
 }
