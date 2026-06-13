@@ -19,13 +19,7 @@ im-config -n fcitx
 gsettings get org.gnome.mutter overlay-key
 gsettings set org.gnome.mutter overlay-key 'Alt_L'
 
-install_if_not_exists "git" "sudo apt install git"
-
 # setup nvim
-sudo add-apt-repository ppa:neovim-ppa/unstable
-sudo apt update
-sudo apt install neovim
-install_if_not_exists "xclip" "sudo apt install xclip"
 
 # Packer
 if [ ! -d "${HOME}/.local/share/nvim/site/pack/packer/start/packer.nvim" ]; then
@@ -76,9 +70,6 @@ install_if_not_exists "vscode" "
 # cursor
 ./cursor.sh
 
-# tmux
-sudo apt install tmux -y
-
 # alfred
 echo 'deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_24.04/ /' | sudo tee /etc/apt/sources.list.d/home:manuelschneid3r.list
 curl -fsSL https://download.opensuse.org/repositories/home:manuelschneid3r/xUbuntu_24.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_manuelschneid3r.gpg > /dev/null
@@ -109,15 +100,6 @@ rm ./docker-desktop-amd64.deb
 # https://docs.docker.com/desktop/setup/sign-in/#credentials-management-for-linux-users
 gpg --generate-key
 pass init <your_generated_gpg-id_public_key>
-
-# awscli
-install_if_not_exists "aws" "
-  curl 'https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip' -o 'awscliv2.zip'
-  sudo apt install unzip -y
-  unzip awscliv2.zip
-  sudo ./aws/install
-  rm -rf aws awscliv2.zip
-"
 
 # DbGate
 # https://dbgate.org/download/

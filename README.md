@@ -1,5 +1,25 @@
 # Dotfiles
 
+## Nixのセットアップ
+
+最初にNixを入れて、CLIツール（git, neovim, tmux, ripgrep, lazygit, peco, ghq, unzip, wget など）をまとめてインストールする。
+以降のセットアップは、ここで入れたCLIツールが使える前提で進める。
+
+```bash
+# Nix本体をインストール（flakes有効。これだけはシステムのcurlを使う）
+curl -sSfL https://artifacts.nixos.org/nix-installer | sh -s -- install --enable-flakes
+
+# CLIツールをインストール（flakeは追跡ファイルしか見ないため git add が必要）
+git add nix/
+nix run home-manager/master -- switch --flake ./nix#default
+```
+
+2回目以降（ツールの追加・更新）は以下で反映する。
+
+```bash
+home-manager switch --flake ./nix#default
+```
+
 ## zshのセットアップ
 
 
