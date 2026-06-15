@@ -73,3 +73,8 @@ esac
 if [ -d "$HOME/.moon" ]; then
   export PATH="$HOME/.moon/bin:$PATH"
 fi
+
+# Local-only secrets / machine-specific env (see ~/.zshrc.local, not tracked in git)
+if [ -f "$HOME/.zshrc.local" ]; then
+  source "$HOME/.zshrc.local"
+fi
