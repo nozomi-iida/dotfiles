@@ -20,18 +20,24 @@ nix run home-manager/master -- switch --flake ./nix#wsl
 home-manager switch --flake ./nix#wsl
 ```
 
-## zshのセットアップ
+## ランタイムのセットアップ（mise）
 
+node / go / rust / deno / java / bun などの言語ランタイムは mise 一本で管理する。
+設定は `.config/mise/config.toml`（dotfilesからsymlink）にまとまっている。
 
 ```bash
-./shell/setup/programmings/go/setup.sh
-./shell/setup/zsh/setup.sh
+# 設定ファイルを信頼（symlink先パスが標準と違うため初回のみ必要）
+mise trust ~/.config/mise/config.toml
+
+# config.toml に書かれたツールを一括インストール
+mise install
 ```
+
+ツールの追加・バージョン変更は `.config/mise/config.toml` を編集して `mise install` で反映する。
 
 ## nvimのセットアップ
 
 ```bash
-./shell/setup/programmings/node/setup.sh
 ./shell/setup/nvim/setup.sh
 ```
 
