@@ -29,5 +29,11 @@
   home.file = {};
 
   home.sessionVariables = {};
+
+  # 言語ランタイム管理のmise本体をhome-managerで管理する
+  # zsh有効化(activate)は自前の.zshrcで行う(home-managerがzshを管理していないため
+  # enableZshIntegrationは効かない)
+  programs.mise.enable = true;
+
   programs.home-manager.enable = true;
 }

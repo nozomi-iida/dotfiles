@@ -15,8 +15,10 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
-# mise
+# ~/.local/bin (uv, uvx, claude, tb など)
 export PATH="$PATH:/home/nozomi/.local/bin"
+
+# mise (本体はhome-managerのprograms.miseで導入。ここで有効化する)
 if command -v mise &> /dev/null; then
   eval "$(mise activate zsh)"
 fi
