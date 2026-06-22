@@ -39,24 +39,46 @@
     ]
   },
   "hooks": {
-    "Stop": [
+    "UserPromptSubmit": [
       {
         "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "TITLE=$(tmux display-message -p '#{?#{automatic-rename},Window #{window_index},#W}'); windows-notify -t 'Claude Code - '$TITLE -m 'タスクが完了しました'"
+            "command": "$HOME/.config/tmux/plugins/tmux-claude-session-manager/scripts/state.sh working"
           }
         ]
       }
     ],
     "Notification": [
       {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/tmux/plugins/tmux-claude-session-manager/scripts/state.sh waiting"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/tmux/plugins/tmux-claude-session-manager/scripts/state.sh waiting"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
         "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "TITLE=$(tmux display-message -p '#{?#{automatic-rename},Window #{window_index},#W}'); windows-notify -t 'Claude Code - '$TITLE -m 'Claude Codeが許可を求めています'"
+            "command": "$HOME/.config/tmux/plugins/tmux-claude-session-manager/scripts/state.sh idle"
           }
         ]
       }

@@ -1,2 +1,4 @@
 .config/nvim/plugin/packer_compiled.lua
 **/.claude/settings.local.json
+# home-managerがnix storeを指すsymlinkをここに生成するため除外（マシン固有でcommit不可）
+.config/tmux/plugins/

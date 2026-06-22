@@ -18,6 +18,8 @@
     pkgs.lazygit
     pkgs.unzip
     pkgs.wget
+    # tmux-claude-session-managerのセッションピッカーUIに必要
+    pkgs.fzf
   ]
   # Linux(X11)専用。Macはpbcopy内蔵なので不要
   ++ lib.optionals pkgs.stdenv.isLinux [
@@ -25,6 +27,7 @@
   ];
 
   home.file = {};
+
   home.sessionVariables = {};
   programs.home-manager.enable = true;
 }
