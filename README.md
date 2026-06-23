@@ -23,17 +23,17 @@ home-manager switch --flake ./nix#wsl
 ## ランタイムのセットアップ（mise）
 
 node / go / rust / deno / java / bun などの言語ランタイムは mise 一本で管理する。
-設定は `.config/mise/config.toml`（dotfilesからsymlink）にまとまっている。
+ツールの一覧は `nix/home.nix` の `programs.mise.globalConfig` にまとまっており、
+`home-manager switch` でグローバル設定 `~/.config/mise/config.toml` が生成される。
+標準パスに置かれるため自動で信頼され、どのディレクトリでもツールが使える。
 
 ```bash
-# 設定ファイルを信頼（symlink先パスが標準と違うため初回のみ必要）
-mise trust ~/.config/mise/config.toml
-
-# config.toml に書かれたツールを一括インストール
+# home-manager switch 済みなら設定は生成済み。config.toml のツールを一括インストール
 mise install
 ```
 
-ツールの追加・バージョン変更は `.config/mise/config.toml` を編集して `mise install` で反映する。
+ツールの追加・バージョン変更は `nix/home.nix` を編集して `home-manager switch` で設定を反映し、
+`mise install` でインストールする。
 
 ## nvimのセットアップ
 

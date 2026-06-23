@@ -35,5 +35,20 @@
   # enableZshIntegrationは効かない)
   programs.mise.enable = true;
 
+  # グローバル設定 ~/.config/mise/config.toml をhome-managerで生成する
+  # 標準パスに置かれるため自動で信頼され、どのディレクトリでもツールが使える
+  programs.mise.globalConfig = {
+    tools = {
+      neovim = "latest";
+      node = "22";
+      pnpm = "9";
+      go = "latest";
+      rust = "latest";
+      deno = "latest";
+      java = "latest";
+      bun = "latest";
+    };
+  };
+
   programs.home-manager.enable = true;
 }
