@@ -45,7 +45,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.config/tmux/plugins/tmux-claude-session-manager/scripts/state.sh working"
+            "command": "$HOME/.config/tmux/plugins/tmux-claude-monitor/scripts/state.sh working"
           }
         ]
       }
@@ -56,7 +56,16 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.config/tmux/plugins/tmux-claude-session-manager/scripts/state.sh waiting"
+            "command": "$HOME/.config/tmux/plugins/tmux-claude-monitor/scripts/state.sh waiting"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "TITLE=$(tmux display-message -p '#{?#{automatic-rename},Window #{window_index},#W}'); windows-notify -t 'Claude Code - '$TITLE -m 'Claude Codeが許可を求めています'"
           }
         ]
       }
@@ -67,7 +76,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.config/tmux/plugins/tmux-claude-session-manager/scripts/state.sh waiting"
+            "command": "$HOME/.config/tmux/plugins/tmux-claude-monitor/scripts/state.sh waiting"
           }
         ]
       }
@@ -78,7 +87,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "$HOME/.config/tmux/plugins/tmux-claude-session-manager/scripts/state.sh idle"
+            "command": "$HOME/.config/tmux/plugins/tmux-claude-monitor/scripts/state.sh idle"
+          },
+          {
+            "type": "command",
+            "command": "TITLE=$(tmux display-message -p '#{?#{automatic-rename},Window #{window_index},#W}'); windows-notify -t 'Claude Code - '$TITLE -m 'タスクが完了しました'"
           }
         ]
       }

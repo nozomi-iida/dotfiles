@@ -18,6 +18,7 @@
     pkgs.lazygit
     pkgs.unzip
     pkgs.wget
+    pkgs.gh
     # tmux-claude-session-managerのセッションピッカーUIに必要
     pkgs.fzf
   ]
