@@ -19,14 +19,6 @@ im-config -n fcitx
 gsettings get org.gnome.mutter overlay-key
 gsettings set org.gnome.mutter overlay-key 'Alt_L'
 
-# setup nvim
-
-# Packer
-if [ ! -d "${HOME}/.local/share/nvim/site/pack/packer/start/packer.nvim" ]; then
-  git clone --depth 1 https://github.com/wbthomason/packer.nvim\
-    ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-fi
-
 # Chrome
 install_if_not_exists "google-chrome" "
   wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
