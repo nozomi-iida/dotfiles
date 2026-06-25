@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, tpm, ... }:
 
 {
   home.username = "nozomi";
@@ -27,7 +27,8 @@
     pkgs.xclip
   ];
 
-  home.file = {};
+  # tpm本体をsymlinkで配置する。プラグインは従来どおり prefix + I で導入
+  home.file.".config/tmux/plugins/tpm".source = tpm;
 
   home.sessionVariables = {};
 

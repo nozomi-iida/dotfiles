@@ -7,16 +7,24 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # tmuxのプラグインマネージャーtpm本体。flake = falseでソースをそのまま取得し
+    # home.nixでsymlink配置する。バージョンはflake.lockで固定される
+    tpm = {
+      url = "github:tmux-plugins/tpm";
+      flake = false;
+    };
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }:
+    { nixpkgs, home-manager, tpm, ... }:
     let
       # systemを渡すと、その環境用のhome-manager設定を作るヘルパー
       mkHome =
         system:
         home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
+          # tpmのソースをhome.nixへ渡す
+          extraSpecialArgs = { inherit tpm; };
           modules = [ ./home.nix ];
         };
     in
