@@ -14,6 +14,7 @@ end
 
 -- local eslint_files = { ".eslintrc.js", ".eslintrc.json", ".eslintrc", "eslint.config.js", "eslint.config.mjs" }
 local prettier_files = { ".prettierrc.json", ".prettierrc", ".prettierrc.js", "prettier.config.js" }
+local biome_files = { "biome.json", "biome.jsonc" }
 
 local function find_root(files)
   return function()
@@ -55,6 +56,13 @@ local sources = {
     root_dir = find_root(prettier_files),
     condition = function()
       return find_root(prettier_files)() ~= nil
+    end,
+  }),
+  -- biome 設定ファイルがあるプロジェクトでのみ biome を実行する
+  null_ls.builtins.formatting.biome.with({
+    root_dir = find_root(biome_files),
+    condition = function()
+      return find_root(biome_files)() ~= nil
     end,
   }),
   cspell.diagnostics.with({
