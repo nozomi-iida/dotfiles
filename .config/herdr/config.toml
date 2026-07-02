@@ -1,0 +1,14 @@
+# herdr 設定ファイル
+# デフォルト全体は `herdr --default-config` で確認できる。
+# ここに書いた項目だけが既定値を上書きする。
+
+[keys]
+# プレフィックスキー(デフォルト: "ctrl+b")
+prefix = "ctrl+t"
+
+# tmux風のペイン分割(prefix+"で上下、prefix+%で左右)
+split_horizontal = "prefix+double_quote"
+split_vertical = "prefix+percent"
+
+[ui.toast]
+delivery = "system"
