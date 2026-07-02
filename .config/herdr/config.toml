@@ -1,3 +1,4 @@
+onboarding = false
 # herdr 設定ファイル(tmux.confと同じ操作感に合わせている)
 # デフォルト全体は `herdr --default-config` で確認できる。
 
@@ -10,6 +11,7 @@ split_horizontal = "prefix+double_quote"
 split_vertical = "prefix+percent"
 reload_config = "prefix+r"
 resize_mode = "prefix+shift+r"
+close_tab = "prefix+ampersand"
 
 [ui]
 pane_gaps = false
