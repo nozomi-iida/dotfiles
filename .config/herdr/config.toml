@@ -1,14 +1,26 @@
-# herdr 設定ファイル
+# herdr 設定ファイル(tmux.confと同じ操作感に合わせている)
 # デフォルト全体は `herdr --default-config` で確認できる。
-# ここに書いた項目だけが既定値を上書きする。
+
+[terminal]
+new_cwd = "follow"
 
 [keys]
-# プレフィックスキー(デフォルト: "ctrl+b")
 prefix = "ctrl+t"
-
-# tmux風のペイン分割(prefix+"で上下、prefix+%で左右)
 split_horizontal = "prefix+double_quote"
 split_vertical = "prefix+percent"
+reload_config = "prefix+r"
+resize_mode = "prefix+shift+r"
 
+[ui]
+pane_gaps = false
+
+show_agent_labels_on_pane_borders = false
 [ui.toast]
 delivery = "system"
+
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+[experimental]
+pane_history = true

@@ -23,6 +23,8 @@
     pkgs.fzf
     # herdr(https://herdr.dev/)をflakeから導入する
     herdr.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # .zshrcのherdrタブ自動リネームで使用
+    pkgs.jq
   ]
   # Linux(X11)専用。Macはpbcopy内蔵なので不要
   ++ lib.optionals pkgs.stdenv.isLinux [
