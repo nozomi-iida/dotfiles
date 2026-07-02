@@ -13,19 +13,24 @@
       url = "github:tmux-plugins/tpm";
       flake = false;
     };
+    # herdr本体をflakeから取得する
+    herdr = {
+      url = "github:ogulcancelik/herdr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { nixpkgs, home-manager, tpm, ... }:
+    { nixpkgs, home-manager, tpm, herdr, ... }:
     let
       # systemを渡すと、その環境用のhome-manager設定を作るヘルパー
       mkHome =
         system:
         home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
-          # tpmのソースをhome.nixへ渡す
-          extraSpecialArgs = { inherit tpm; };
           modules = [ ./home.nix ];
+          # home.nixへ渡す: tpmのソース(symlink配置用)とherdr flake(home.packages用)
+          extraSpecialArgs = { inherit tpm herdr; };
         };
     in
     {

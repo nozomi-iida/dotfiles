@@ -1,0 +1,6 @@
+#!/bin/bash -e
+# ideコマンドのherdr版: メインペイン + 下部30%を3分割
+# herdrの--ratioは「分割前のペインが保持する比率」なのでtmuxの-l(新ペインのサイズ)とは逆
+bottom=$(herdr pane split --current --direction down --ratio 0.7 --focus | jq -r '.result.pane.pane_id')
+middle=$(herdr pane split --pane "$bottom" --direction right --ratio 0.34 --focus | jq -r '.result.pane.pane_id')
+herdr pane split --pane "$middle" --direction right --ratio 0.5 --focus > /dev/null
