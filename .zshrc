@@ -1,6 +1,6 @@
-# Auto-start tmux
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-  tmux new-session
+# Auto-start herdr
+if command -v herdr &> /dev/null && [ -z "$HERDR_ENV" ]; then
+  herdr
 fi
 
 export EDITOR=vim
