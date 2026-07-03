@@ -1,8 +1,3 @@
-# Auto-start herdr
-if command -v herdr &> /dev/null && [ -z "$HERDR_ENV" ]; then
-  herdr
-fi
-
 export EDITOR=vim
 setopt nonomatch
 
