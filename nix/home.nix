@@ -47,7 +47,7 @@
     tools = {
       neovim = "latest";
       node = "22";
-      pnpm = "9";
+      pnpm = "10";
       go = "latest";
       rust = "latest";
       deno = "latest";
