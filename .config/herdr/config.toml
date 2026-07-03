@@ -12,6 +12,7 @@ split_vertical = "prefix+percent"
 reload_config = "prefix+r"
 resize_mode = "prefix+shift+r"
 close_tab = "prefix+ampersand"
+focus_agent = "prefix+alt+1..9"
 
 [ui]
 pane_gaps = false
@@ -21,7 +22,7 @@ show_agent_labels_on_pane_borders = false
 delivery = "system"
 
 [theme]
-name = "catppuccin"
+name = "tokyo-night"
 auto_switch = false
 
 [experimental]
