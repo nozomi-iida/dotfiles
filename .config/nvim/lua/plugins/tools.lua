@@ -1,15 +1,15 @@
 return {
   -- GitHub Copilot
-  {
-    'github/copilot.vim',
-    event = 'InsertEnter',
-    init = function()
-      vim.g.copilot_filetypes = {
-        ["*"] = true,
-        ["rust"] = false,
-      }
-    end,
-  },
+  -- {
+  --   'github/copilot.vim',
+  --   event = 'InsertEnter',
+  --   init = function()
+  --     vim.g.copilot_filetypes = {
+  --       ["*"] = true,
+  --       ["rust"] = false,
+  --     }
+  --   end,
+  -- },
 
   -- Markdown Support
   {
@@ -23,15 +23,15 @@ return {
       -- ]c (現在の見出しへ移動) を無効化し、diffview等でdiff標準の ]c (次の変更へ) を活かす
       vim.cmd("map <Plug>NvimMarkdownDisableCurHeader <Plug>Markdown_MoveToCurHeader")
     end,
-    config = function()
-      -- nvim-markdownの後にCopilotのTabマッピングを設定
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "markdown",
-        callback = function()
-          vim.cmd([[imap <buffer> <expr> <Tab> copilot#Accept("\<Plug>Markdown_Jump")]])
-        end,
-      })
-    end,
+    -- config = function()
+    --   -- nvim-markdownの後にCopilotのTabマッピングを設定
+    --   vim.api.nvim_create_autocmd("FileType", {
+    --     pattern = "markdown",
+    --     callback = function()
+    --       vim.cmd([[imap <buffer> <expr> <Tab> copilot#Accept("\<Plug>Markdown_Jump")]])
+    --     end,
+    --   })
+    -- end,
   },
 
   -- Markdown Preview
