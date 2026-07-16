@@ -1,38 +1,29 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
+    -- nvim-treesitter のデフォルトブランチは main に切り替わったが、
+    -- main は Neovim 0.12 (nightly) 必須の別物のため master に固定する
+    branch = 'master',
     event = { 'BufReadPost', 'BufNewFile' },
     build = ':TSUpdate',
     config = function()
-      -- MoonBit tree-sitter パーサーを登録（TSUpdateイベント時にインストール可能にする）
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "TSUpdate",
-        callback = function()
-          require("nvim-treesitter.parsers").moonbit = {
-            tier = 4,
-            install_info = {
-              url = "https://github.com/moonbitlang/tree-sitter-moonbit",
-              revision = "main",
-              branch = "main",
-              queries = "queries",
-            },
-          }
-        end,
-      })
-
-      local langs = {
-        "bash", "go", "rust", "tsx", "toml", "json", "yaml",
-        "css", "html", "lua", "graphql", "typescript", "vimdoc", "prisma", "python",
+      -- MoonBit tree-sitter パーサーを登録
+      require("nvim-treesitter.parsers").get_parser_configs().moonbit = {
+        install_info = {
+          url = "https://github.com/moonbitlang/tree-sitter-moonbit",
+          revision = "main",
+          branch = "main",
+          files = { "src/parser.c" },
+        },
+        filetype = "moonbit",
       }
 
-      -- 未インストールのパーサーを自動インストール
-      for _, lang in ipairs(langs) do
-        if not pcall(vim.treesitter.language.inspect, lang) then
-          vim.cmd("TSInstall " .. lang)
-        end
-      end
-
-      require("nvim-treesitter.config").setup({
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "bash", "go", "rust", "tsx", "toml", "json", "yaml",
+          "css", "html", "lua", "graphql", "typescript", "vimdoc", "prisma", "python",
+        },
+        auto_install = true,
         highlight = { enable = true },
         indent = { enable = true },
       })
