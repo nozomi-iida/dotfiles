@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 # Claude Code statusline
-# stdin から渡される JSON を読んで、モデル / ディレクトリ / ブランチ /
+# stdin から渡される JSON を読んで、ディレクトリ /
 # コンテキスト使用量 / サブスクリプションの使用制限の使用量を表示する。
 #
 # rate_limits は Claude.ai サブスクリプション利用時、かつ最初の API 応答後にのみ入る。
 
 input=$(cat)
 
-model=$(jq -r '.model.display_name // empty' <<<"$input")
 cwd=$(jq -r '.workspace.current_dir // .cwd // empty' <<<"$input")
 ctx=$(jq -r '.context_window.used_percentage // empty' <<<"$input")
 
@@ -56,13 +55,6 @@ limit_segment() {
 segments=()
 
 [ -n "$cwd" ] && segments+=("${CYAN}$(basename "$cwd")${RESET}")
-
-if [ -n "$cwd" ]; then
-  branch=$(git -C "$cwd" branch --show-current 2>/dev/null)
-  [ -n "$branch" ] && segments+=("${DIM}⎇ ${branch}${RESET}")
-fi
-
-[ -n "$model" ] && segments+=("${DIM}${model}${RESET}")
 
 if [ -n "$ctx" ]; then
   ctx_int=$(printf '%.0f' "$ctx")
