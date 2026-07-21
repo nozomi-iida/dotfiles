@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 # Claude Code statusline
 # stdin から渡される JSON を読んで、ディレクトリ /
-# コンテキスト使用量 / サブスクリプションの使用制限の使用量を表示する。
+# サブスクリプションの使用制限の使用量を表示する。
 #
 # rate_limits は Claude.ai サブスクリプション利用時、かつ最初の API 応答後にのみ入る。
 
 input=$(cat)
 
 cwd=$(jq -r '.workspace.current_dir // .cwd // empty' <<<"$input")
-ctx=$(jq -r '.context_window.used_percentage // empty' <<<"$input")
 
 DIM=$'\033[2m'
 RESET=$'\033[0m'
@@ -55,11 +54,6 @@ limit_segment() {
 segments=()
 
 [ -n "$cwd" ] && segments+=("${CYAN}$(basename "$cwd")${RESET}")
-
-if [ -n "$ctx" ]; then
-  ctx_int=$(printf '%.0f' "$ctx")
-  segments+=("${DIM}ctx ${RESET}$(color_for "$ctx_int")${ctx_int}%${RESET}")
-fi
 
 five=$(limit_segment five_hour "5h")
 [ -n "$five" ] && segments+=("$five")
