@@ -38,18 +38,8 @@
       "Bash(pnpm install:*)"
     ]
   },
+  "model": "opus[1m]",
   "hooks": {
-    "UserPromptSubmit": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.config/tmux/plugins/tmux-claude-monitor/scripts/state.sh working"
-          }
-        ]
-      }
-    ],
     "Notification": [
       {
         "matcher": "permission_prompt",
@@ -77,6 +67,18 @@
           {
             "type": "command",
             "command": "$HOME/.config/tmux/plugins/tmux-claude-monitor/scripts/state.sh waiting"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/home/nozomi/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
           }
         ]
       }
