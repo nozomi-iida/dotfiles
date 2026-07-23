@@ -83,6 +83,19 @@ return {
     'sindrets/diffview.nvim',
     cmd = { 'DiffviewOpen', 'DiffviewFileHistory' },
     init = function()
+      -- 既に別タブでDiffviewが開いていればそのタブへ移動し、無ければ新規に開く
+      vim.api.nvim_create_user_command('DiffviewOpenOrFocus', function(opts)
+        local lib = require('diffview.lib')
+        local DiffView = require('diffview.scene.views.diff.diff_view').DiffView
+        for _, view in ipairs(lib.views) do
+          if view:instanceof(DiffView) and vim.api.nvim_tabpage_is_valid(view.tabpage) then
+            vim.api.nvim_set_current_tabpage(view.tabpage)
+            return
+          end
+        end
+        vim.cmd('DiffviewOpen ' .. opts.args)
+      end, { nargs = '*', desc = 'Focus existing Diffview or open a new one' })
+
       vim.api.nvim_create_user_command('DiffviewDiffBase', function()
         local base = vim.fn.system("git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null"):gsub("refs/remotes/origin/",
           ""):gsub("%s+", "")
@@ -91,7 +104,7 @@ return {
       end, { desc = "Diff against base branch" })
     end,
     keys = {
-      { '<leader>gd', '<cmd>DiffviewOpen<cr>',          desc = 'Open Diffview' },
+      { '<leader>gd', '<cmd>DiffviewOpenOrFocus<cr>',   desc = 'Open Diffview' },
       { '<leader>gh', '<cmd>DiffviewFileHistory %<cr>', desc = 'File History' },
       { '<leader>gH', '<cmd>DiffviewFileHistory<cr>',   desc = 'Branch History' },
     },
