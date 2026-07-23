@@ -27,3 +27,6 @@ auto_switch = false
 
 [experimental]
 pane_history = true
+
+[ui.sound]
+enabled = true
