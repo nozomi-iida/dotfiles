@@ -36,7 +36,8 @@
       "Bash(mv:*)",
       "Bash(npm install:*)",
       "Bash(pnpm install:*)"
-    ]
+    ],
+    "defaultMode": "auto"
   },
   "model": "opus[1m]",
   "hooks": {
