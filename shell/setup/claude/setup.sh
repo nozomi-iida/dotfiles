@@ -14,7 +14,10 @@ fi
 ln -snfv "$(pwd)/claude/$SOURCE" "$HOME/.claude/settings.json"
 ln -snfv "$(pwd)/claude/skills" "$HOME/.claude/skills"
 ln -snfv "$(pwd)/claude/commands" "$HOME/.claude/commands"
-ln -snfv "$(pwd)/claude/statusline.sh" "$HOME/.claude/statusline.sh"
+ln -snfv "$(pwd)/claude/statusline.ts" "$HOME/.claude/statusline.ts"
+# 旧bash版のリンクが残っていると混乱するので消す。
+# `-e` 下なので `[ -L ... ] &&` だとリンクが無いときに終了してしまうため rm -f を直接使う
+rm -f "$HOME/.claude/statusline.sh"
 
 # 外部skill(npx skills add)の実体は claude/.agents で管理する。
 # npxが生成する相対リンク(claude/skills/<name> -> ../../.agents/skills/...)は
