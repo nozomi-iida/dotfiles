@@ -43,15 +43,6 @@
   "hooks": {
     "Notification": [
       {
-        "matcher": "permission_prompt",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.config/tmux/plugins/tmux-claude-monitor/scripts/state.sh waiting"
-          }
-        ]
-      },
-      {
         "matcher": "",
         "hooks": [
           {
@@ -61,25 +52,10 @@
         ]
       }
     ],
-    "PreToolUse": [
-      {
-        "matcher": "AskUserQuestion",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.config/tmux/plugins/tmux-claude-monitor/scripts/state.sh waiting"
-          }
-        ]
-      }
-    ],
     "Stop": [
       {
         "matcher": "",
         "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.config/tmux/plugins/tmux-claude-monitor/scripts/state.sh idle"
-          },
           {
             "type": "command",
             "command": "TITLE=$(tmux display-message -p '#{?#{automatic-rename},Window #{window_index},#W}'); windows-notify -t 'Claude Code - '$TITLE -m 'タスクが完了しました'"
@@ -93,6 +69,17 @@
     "command": "bun $HOME/.claude/statusline.ts",
     "padding": 0
   },
+  "extraKnownMarketplaces": {
+    "hiroppy": {
+      "source": {
+        "source": "directory",
+        "path": "/home/nozomi/.config/tmux/plugins/tmux-agent-sidebar"
+      }
+    }
+  },
   "alwaysThinkingEnabled": true,
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "enabledPlugins": {
+    "tmux-agent-sidebar@hiroppy": true
+  }
 }
