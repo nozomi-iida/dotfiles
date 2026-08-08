@@ -1,9 +1,9 @@
 { config, pkgs, lib, tpm, herdr, ... }:
 
 {
-  home.username = "nozomi";
+  home.username = if pkgs.stdenv.isDarwin then "iidanozomushi" else "nozomi";
   home.homeDirectory =
-    if pkgs.stdenv.isDarwin then "/Users/nozomi" else "/home/nozomi";
+    if pkgs.stdenv.isDarwin then "/Users/iidanozomushi" else "/home/nozomi";
 
   home.stateVersion = "26.05";
 

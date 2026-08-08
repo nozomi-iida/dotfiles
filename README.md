@@ -9,8 +9,6 @@
 # Nix本体をインストール（flakes有効。これだけはシステムのcurlを使う）
 curl -sSfL https://artifacts.nixos.org/nix-installer | sh -s -- install --enable-flakes
 
-# CLIツールをインストール（flakeは追跡ファイルしか見ないため git add が必要）
-git add nix/
 nix run home-manager/master -- switch --flake ./nix#wsl
 ```
 
