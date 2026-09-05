@@ -69,6 +69,9 @@
     "command": "bun $HOME/.claude/statusline.ts",
     "padding": 0
   },
+  "enabledPlugins": {
+    "tmux-agent-sidebar@hiroppy": true
+  },
   "extraKnownMarketplaces": {
     "hiroppy": {
       "source": {
@@ -77,9 +80,13 @@
       }
     }
   },
+  "language": "ja",
   "alwaysThinkingEnabled": true,
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
   "skipDangerousModePermissionPrompt": true,
-  "enabledPlugins": {
-    "tmux-agent-sidebar@hiroppy": true
-  }
+  "voiceEnabled": true,
+  "agentPushNotifEnabled": true
 }
