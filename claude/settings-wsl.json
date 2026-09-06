@@ -40,6 +40,9 @@
     "defaultMode": "auto"
   },
   "model": "opus[1m]",
+  "env": {
+    "BROWSER": "wslview"
+  },
   "hooks": {
     "Notification": [
       {
