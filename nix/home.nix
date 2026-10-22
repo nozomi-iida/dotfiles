@@ -54,6 +54,8 @@
       deno = "latest";
       java = "latest";
       bun = "latest";
+      "npm:takt" = "latest";
+      "npm:@playwright/cli" = "latest";
     };
   };
 
