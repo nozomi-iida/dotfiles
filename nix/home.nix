@@ -35,6 +35,15 @@
   # tpm本体をsymlinkで配置する。プラグインは従来どおり prefix + I で導入
   home.file.".config/tmux/plugins/tpm".source = tpm;
 
+  # WSLのnvimでInsertモードを抜けたときにWindowsのIMEをオフにするzenhan.exeを配置する
+  home.file.".local/bin/zenhan.exe" = lib.mkIf pkgs.stdenv.isLinux {
+    source = "${pkgs.fetchzip {
+      url = "https://github.com/iuchim/zenhan/releases/download/v0.0.1/zenhan.zip";
+      hash = "sha256-gFpquHucKRMqLmuU7YcUAAggrXYZrRmnqd5At32tmRI=";
+    }}/bin64/zenhan.exe";
+    executable = true;
+  };
+
   home.sessionVariables = {};
 
   # 言語ランタイム管理のmise本体をhome-managerで管理する
