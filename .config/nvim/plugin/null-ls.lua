@@ -48,10 +48,14 @@ local sources = {
   -- require("none-ls.code_actions.eslint_d").with({
   --   root_dir = find_root(eslint_files),
   -- }),
+  -- stylelint はプロジェクトの node_modules にある場合のみ実行する
   null_ls.builtins.diagnostics.stylelint.with({
     diagnostics_format = '[stylelint] #{m}\n(#{c})',
+    only_local = "node_modules/.bin",
   }),
-  null_ls.builtins.formatting.stylelint,
+  null_ls.builtins.formatting.stylelint.with({
+    only_local = "node_modules/.bin",
+  }),
   null_ls.builtins.formatting.prettierd.with({
     root_dir = find_root(prettier_files),
     condition = function()
