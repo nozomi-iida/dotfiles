@@ -90,11 +90,13 @@ return {
 
   -- Color Highlighter
   {
-    'norcalli/nvim-colorizer.lua',
+    'catgoose/nvim-colorizer.lua',
     event = 'BufReadPre',
     opts = {
-      'typescript',
-      'css',
+      filetypes = {
+        'typescript',
+        'css',
+      },
     },
   },
 }
