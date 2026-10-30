@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     -- ホワイトリストに含まれるLSPのみ保存時に自動フォーマット
-    if vim.tbl_contains(format_enabled_lsp, client.name) and client.supports_method("textDocument/formatting") then
+    if vim.tbl_contains(format_enabled_lsp, client.name) and client:supports_method("textDocument/formatting") then
       vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = args.buf })
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = augroup_format,
