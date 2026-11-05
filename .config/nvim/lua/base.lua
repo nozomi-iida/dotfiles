@@ -68,3 +68,13 @@ if vim.fn.has("mac") == 0 and vim.fn.executable("xclip") == 1 then
     cache_enabled = 0,
   }
 end
+
+-- WSLではInsertモードを抜けたときにWindowsのIMEをオフにする(zenhan.exeが必要)
+if vim.fn.has("wsl") == 1 and vim.fn.executable("zenhan.exe") == 1 then
+  vim.api.nvim_create_autocmd("InsertLeave", {
+    pattern = "*",
+    callback = function()
+      vim.fn.jobstart({ "zenhan.exe", "0" })
+    end
+  })
+end

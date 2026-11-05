@@ -48,10 +48,14 @@ local sources = {
   -- require("none-ls.code_actions.eslint_d").with({
   --   root_dir = find_root(eslint_files),
   -- }),
+  -- stylelint はプロジェクトの node_modules にある場合のみ実行する
   null_ls.builtins.diagnostics.stylelint.with({
     diagnostics_format = '[stylelint] #{m}\n(#{c})',
+    only_local = "node_modules/.bin",
   }),
-  null_ls.builtins.formatting.stylelint,
+  null_ls.builtins.formatting.stylelint.with({
+    only_local = "node_modules/.bin",
+  }),
   null_ls.builtins.formatting.prettierd.with({
     root_dir = find_root(prettier_files),
     condition = function()
@@ -79,7 +83,7 @@ local sources = {
 null_ls.setup {
   sources = sources,
   on_attach = function(client, bufnr)
-    if client.supports_method("textDocument/formatting") then
+    if client:supports_method("textDocument/formatting") then
       vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = augroup,
