@@ -13,6 +13,10 @@ source $ZSH/oh-my-zsh.sh
 # ~/.local/bin (uv, uvx, claude, tb など)
 export PATH="$PATH:/home/nozomi/.local/bin"
 
+# herdr 上では Claude Code がターミナルのハイパーリンク対応を検出できず、
+# statusline の OSC 8 リンクが除去されるため、検出を上書きする
+export FORCE_HYPERLINK=1
+
 # mise (本体はhome-managerのprograms.miseで導入。ここで有効化する)
 if command -v mise &> /dev/null; then
   eval "$(mise activate zsh)"

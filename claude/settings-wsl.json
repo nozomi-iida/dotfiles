@@ -33,9 +33,7 @@
     ],
     "ask": [
       "Bash(rm:*)",
-      "Bash(mv:*)",
-      "Bash(npm install:*)",
-      "Bash(pnpm install:*)"
+      "Bash(mv:*)"
     ],
     "defaultMode": "auto"
   },
